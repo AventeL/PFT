@@ -8,24 +8,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:pft/domain/repositories/exercise_repository.dart';
-import 'package:pft/domain/usecases/create_custom_exercise.dart';
-import 'package:pft/domain/usecases/get_exercises.dart';
-import 'package:pft/domain/usecases/search_exercises.dart';
-import 'package:pft/domain/usecases/seed_exercises.dart';
+import 'package:mockito/mockito.dart';
 import 'package:pft/presentation/blocs/exercise/exercise_bloc.dart';
 
-// Mock classes for testing
-class MockGetExercises extends Mock implements GetExercises {}
-
-class MockCreateCustomExercise extends Mock implements CreateCustomExercise {}
-
-class MockSeedExercises extends Mock implements SeedExercises {}
-
-class MockSearchExercises extends Mock implements SearchExercises {}
-
-class MockExerciseRepository extends Mock implements ExerciseRepository {}
+import 'helpers/test_helpers.mocks.dart';
 
 void main() {
   testWidgets('App smoke test - loads without crashing', (
@@ -39,8 +25,8 @@ void main() {
     final mockRepository = MockExerciseRepository();
 
     // Mock the responses
-    when(() => mockSeedExercises()).thenAnswer((_) async => {});
-    when(() => mockGetExercises()).thenAnswer((_) async => []);
+    when(mockSeedExercises.call()).thenAnswer((_) async => {});
+    when(mockGetExercises.call()).thenAnswer((_) async => []);
 
     // Build our app with mocked BLoC
     await tester.pumpWidget(

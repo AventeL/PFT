@@ -1,28 +1,13 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
+import 'package:mockito/mockito.dart';
 import 'package:pft/domain/entities/exercise.dart';
 import 'package:pft/domain/entities/exercise_enums.dart';
-import 'package:pft/domain/repositories/exercise_repository.dart';
-import 'package:pft/domain/usecases/create_custom_exercise.dart' as use_case;
-import 'package:pft/domain/usecases/get_exercises.dart';
-import 'package:pft/domain/usecases/search_exercises.dart';
-import 'package:pft/domain/usecases/seed_exercises.dart';
 import 'package:pft/presentation/blocs/exercise/exercise_bloc.dart';
 import 'package:pft/presentation/blocs/exercise/exercise_event.dart';
 import 'package:pft/presentation/blocs/exercise/exercise_state.dart';
 
-// Mock classes using mocktail
-class MockGetExercises extends Mock implements GetExercises {}
-
-class MockCreateCustomExercise extends Mock
-    implements use_case.CreateCustomExercise {}
-
-class MockSeedExercises extends Mock implements SeedExercises {}
-
-class MockSearchExercises extends Mock implements SearchExercises {}
-
-class MockExerciseRepository extends Mock implements ExerciseRepository {}
+import '../../helpers/test_helpers.mocks.dart';
 
 void main() {
   late ExerciseBloc exerciseBloc;
@@ -31,21 +16,6 @@ void main() {
   late MockSeedExercises mockSeedExercises;
   late MockSearchExercises mockSearchExercises;
   late MockExerciseRepository mockRepository;
-
-  setUpAll(() {
-    // Register fallback value for Exercise type with a real instance
-    registerFallbackValue(
-      Exercise(
-        id: 'fallback-id',
-        name: 'Fallback Exercise',
-        muscleGroup: MuscleGroup.chest,
-        category: ExerciseCategory.compound,
-        equipmentType: EquipmentType.barbell,
-        isCustom: false,
-        createdAt: DateTime.now(),
-      ),
-    );
-  });
 
   setUp(() {
     mockGetExercises = MockGetExercises();
@@ -87,7 +57,7 @@ void main() {
     blocTest<ExerciseBloc, ExerciseState>(
       'emits [ExerciseLoading, ExercisesLoaded] when LoadExercises succeeds',
       build: () {
-        when(() => mockGetExercises()).thenAnswer((_) async => testExercises);
+        when(mockGetExercises.call()).thenAnswer((_) async => testExercises);
         return exerciseBloc;
       },
       act: (bloc) => bloc.add(const LoadExercises()),
@@ -96,14 +66,14 @@ void main() {
         ExercisesLoaded(allExercises: testExercises),
       ],
       verify: (_) {
-        verify(() => mockGetExercises()).called(1);
+        verify(mockGetExercises.call()).called(1);
       },
     );
 
     blocTest<ExerciseBloc, ExerciseState>(
       'emits [ExerciseLoading, ExerciseError] when LoadExercises fails',
       build: () {
-        when(() => mockGetExercises()).thenThrow(Exception('Failed to load'));
+        when(mockGetExercises.call()).thenThrow(Exception('Failed to load'));
         return exerciseBloc;
       },
       act: (bloc) => bloc.add(const LoadExercises()),
@@ -116,8 +86,8 @@ void main() {
     blocTest<ExerciseBloc, ExerciseState>(
       'emits [ExerciseLoading, ExercisesLoaded] when SeedExercisesIfNeeded succeeds',
       build: () {
-        when(() => mockSeedExercises()).thenAnswer((_) async => {});
-        when(() => mockGetExercises()).thenAnswer((_) async => testExercises);
+        when(mockSeedExercises.call()).thenAnswer((_) async => {});
+        when(mockGetExercises.call()).thenAnswer((_) async => testExercises);
         return exerciseBloc;
       },
       act: (bloc) => bloc.add(const SeedExercisesIfNeeded()),
@@ -126,17 +96,17 @@ void main() {
         ExercisesLoaded(allExercises: testExercises),
       ],
       verify: (_) {
-        verify(() => mockSeedExercises()).called(1);
-        verify(() => mockGetExercises()).called(1);
+        verify(mockSeedExercises.call()).called(1);
+        verify(mockGetExercises.call()).called(1);
       },
     );
 
     blocTest<ExerciseBloc, ExerciseState>(
       'emits [ExercisesLoaded] when CreateCustomExerciseEvent succeeds',
       build: () {
-        when(() => mockRepository.createExercise(any()))
+        when(mockRepository.createExercise(any))
             .thenAnswer((_) async => testExercise);
-        when(() => mockGetExercises()).thenAnswer((_) async => testExercises);
+        when(mockGetExercises.call()).thenAnswer((_) async => testExercises);
         return exerciseBloc;
       },
       act: (bloc) => bloc.add(CreateCustomExerciseEvent(testExercise)),
@@ -144,17 +114,16 @@ void main() {
         ExercisesLoaded(allExercises: testExercises),
       ],
       verify: (_) {
-        verify(() => mockRepository.createExercise(testExercise)).called(1);
-        verify(() => mockGetExercises()).called(1);
+        verify(mockRepository.createExercise(testExercise)).called(1);
+        verify(mockGetExercises.call()).called(1);
       },
     );
 
     blocTest<ExerciseBloc, ExerciseState>(
       'emits [ExercisesLoaded] when DeleteCustomExerciseEvent succeeds',
       build: () {
-        when(() => mockRepository.deleteExercise(any()))
-            .thenAnswer((_) async => {});
-        when(() => mockGetExercises()).thenAnswer((_) async => []);
+        when(mockRepository.deleteExercise(any)).thenAnswer((_) async => {});
+        when(mockGetExercises.call()).thenAnswer((_) async => []);
         return exerciseBloc;
       },
       act: (bloc) => bloc.add(const DeleteCustomExerciseEvent('test-id')),
@@ -162,15 +131,15 @@ void main() {
         const ExercisesLoaded(allExercises: []),
       ],
       verify: (_) {
-        verify(() => mockRepository.deleteExercise('test-id')).called(1);
-        verify(() => mockGetExercises()).called(1);
+        verify(mockRepository.deleteExercise('test-id')).called(1);
+        verify(mockGetExercises.call()).called(1);
       },
     );
 
     blocTest<ExerciseBloc, ExerciseState>(
       'emits [ExerciseError] when CreateCustomExerciseEvent fails',
       build: () {
-        when(() => mockRepository.createExercise(any()))
+        when(mockRepository.createExercise(any))
             .thenThrow(Exception('Failed to create'));
         return exerciseBloc;
       },

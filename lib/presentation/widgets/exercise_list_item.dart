@@ -67,7 +67,8 @@ class ExerciseListItem extends StatelessWidget {
               // Custom badge if applicable
               if (exercise.isCustom)
                 Chip(
-                  label: Text('Personnalisé', style: AppTextStyles.caption),
+                  label: Text(context.l10n.customExercise,
+                      style: AppTextStyles.caption),
                   backgroundColor: AppColors.secondary.withValues(alpha: 0.2),
                   padding: EdgeInsets.zero,
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

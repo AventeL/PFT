@@ -4,7 +4,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:pft/domain/entities/exercise.dart';
 import 'package:pft/domain/entities/exercise_enums.dart';
 import 'package:pft/domain/repositories/exercise_repository.dart';
-import 'package:pft/domain/usecases/create_custom_exercise.dart' as use_case;
+import 'package:pft/domain/usecases/create_custom_exercise.dart';
 import 'package:pft/domain/usecases/get_exercises.dart';
 import 'package:pft/domain/usecases/search_exercises.dart';
 import 'package:pft/domain/usecases/seed_exercises.dart';
@@ -15,8 +15,7 @@ import 'package:pft/presentation/blocs/exercise/exercise_state.dart';
 // Mock classes
 class MockGetExercises extends Mock implements GetExercises {}
 
-class MockCreateCustomExercise extends Mock
-    implements use_case.CreateCustomExercise {}
+class MockCreateCustomExercise extends Mock implements CreateCustomExercise {}
 
 class MockSeedExercises extends Mock implements SeedExercises {}
 
@@ -273,7 +272,15 @@ void main() {
     blocTest<ExerciseBloc, ExerciseState>(
       'combines search and filters correctly',
       build: () {
-        // First filter by muscle group
+        // Fallback mock for any other combination - MUST BE FIRST in Mocktail
+        when(() => mockSearchExercises(
+              query: any(named: 'query'),
+              muscleGroups: any(named: 'muscleGroups'),
+              categories: any(named: 'categories'),
+              equipmentTypes: any(named: 'equipmentTypes'),
+            )).thenAnswer((_) async => []);
+
+        // Mock for filtering by muscle group (no search query yet) - SPECIFIC
         when(() => mockSearchExercises(
               query: '',
               muscleGroups: {MuscleGroup.chest},
@@ -281,7 +288,7 @@ void main() {
               equipmentTypes: const {},
             )).thenAnswer((_) async => [chestExercise1, chestExercise2]);
 
-        // Then search within filtered results
+        // Mock for searching within filtered results - SPECIFIC
         when(() => mockSearchExercises(
               query: 'barbell',
               muscleGroups: {MuscleGroup.chest},
@@ -292,8 +299,9 @@ void main() {
         return exerciseBloc;
       },
       seed: () => ExercisesLoaded(allExercises: testExercises),
-      act: (bloc) {
+      act: (bloc) async {
         bloc.add(const FilterByMuscleGroupsEvent({MuscleGroup.chest}));
+        await Future.delayed(const Duration(milliseconds: 100));
         bloc.add(const SearchExercisesEvent('barbell'));
       },
       expect: () => [

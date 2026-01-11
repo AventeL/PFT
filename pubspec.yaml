@@ -14,6 +14,7 @@ dependencies:
 
   # Core Dependencies
   flutter_bloc: ^8.1.0          # State management
+  bloc_concurrency: ^0.2.0      # Event transformers for bloc
   sqflite: ^2.3.0               # Local database
   path: ^1.8.3                  # Path manipulation
   get_it: ^7.6.0                # Dependency injection
@@ -44,6 +45,8 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^3.0.0
   mocktail: ^1.0.0              # Testing mocks (no code generation needed)
+  mockito: ^5.4.0               # Alternative mock library with code generation
+  build_runner: ^2.4.0          # Code generation
   bloc_test: ^9.1.0             # BLoC testing
 
 flutter:

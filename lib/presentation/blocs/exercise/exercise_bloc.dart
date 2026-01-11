@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../domain/entities/exercise_enums.dart';
 import '../../../domain/repositories/exercise_repository.dart';
 import '../../../domain/usecases/create_custom_exercise.dart';
 import '../../../domain/usecases/get_exercises.dart';
@@ -209,9 +210,9 @@ class ExerciseBloc extends Bloc<ExerciseEvent, ExerciseState> {
 
     emit(currentState.copyWith(
       searchQuery: '',
-      selectedMuscleGroups: const {},
-      selectedCategories: const {},
-      selectedEquipmentTypes: const {},
+      selectedMuscleGroups: const <MuscleGroup>{},
+      selectedCategories: const <ExerciseCategory>{},
+      selectedEquipmentTypes: const <EquipmentType>{},
       filteredExercises: currentState.allExercises,
     ));
   }

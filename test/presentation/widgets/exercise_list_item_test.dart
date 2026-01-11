@@ -1,10 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pft/domain/entities/exercise.dart';
 import 'package:pft/domain/entities/exercise_enums.dart';
+import 'package:pft/l10n/app_localizations.dart';
 import 'package:pft/presentation/widgets/exercise_list_item.dart';
 
 void main() {
+  // Helper to wrap widgets with localizations
+  Widget createTestWidget(Widget child) {
+    return MaterialApp(
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: const Locale('en'),
+      home: Scaffold(
+        body: child,
+      ),
+    );
+  }
+
   group('ExerciseListItem Widget Tests', () {
     testWidgets('displays exercise name', (WidgetTester tester) async {
       // Arrange
@@ -20,11 +39,7 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: ExerciseListItem(exercise: exercise),
-          ),
-        ),
+        createTestWidget(ExerciseListItem(exercise: exercise)),
       );
 
       // Assert
@@ -45,11 +60,7 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: ExerciseListItem(exercise: exercise),
-          ),
-        ),
+        createTestWidget(ExerciseListItem(exercise: exercise)),
       );
 
       // Assert
@@ -70,11 +81,7 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: ExerciseListItem(exercise: exercise),
-          ),
-        ),
+        createTestWidget(ExerciseListItem(exercise: exercise)),
       );
 
       // Assert
@@ -96,11 +103,7 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: ExerciseListItem(exercise: exercise),
-          ),
-        ),
+        createTestWidget(ExerciseListItem(exercise: exercise)),
       );
 
       // Assert
@@ -122,11 +125,7 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: ExerciseListItem(exercise: exercise),
-          ),
-        ),
+        createTestWidget(ExerciseListItem(exercise: exercise)),
       );
 
       // Assert
@@ -147,11 +146,7 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: ExerciseListItem(exercise: exercise),
-          ),
-        ),
+        createTestWidget(ExerciseListItem(exercise: exercise)),
       );
 
       // Assert
@@ -174,14 +169,12 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: ExerciseListItem(
-              exercise: exercise,
-              onTap: () {
-                tapped = true;
-              },
-            ),
+        createTestWidget(
+          ExerciseListItem(
+            exercise: exercise,
+            onTap: () {
+              tapped = true;
+            },
           ),
         ),
       );
@@ -216,11 +209,7 @@ void main() {
         );
 
         await tester.pumpWidget(
-          MaterialApp(
-            home: Scaffold(
-              body: ExerciseListItem(exercise: exercise),
-            ),
-          ),
+          createTestWidget(ExerciseListItem(exercise: exercise)),
         );
 
         // Should display an icon for each equipment type
@@ -246,11 +235,7 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: ExerciseListItem(exercise: exercise),
-          ),
-        ),
+        createTestWidget(ExerciseListItem(exercise: exercise)),
       );
 
       // Assert
@@ -272,17 +257,13 @@ void main() {
 
       // Act
       await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: ExerciseListItem(exercise: exercise),
-          ),
-        ),
+        createTestWidget(ExerciseListItem(exercise: exercise)),
       );
 
       // Assert
       expect(find.byType(Card), findsOneWidget);
-      expect(find.byType(InkWell), findsWidgets); // Multiple InkWells (Card + potential Chips)
+      expect(find.byType(InkWell),
+          findsWidgets); // Multiple InkWells (Card + potential Chips)
     });
   });
 }
-
