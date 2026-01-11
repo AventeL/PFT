@@ -111,8 +111,15 @@ class ExerciseListItem extends StatelessWidget {
 
   Widget _buildChip(String label, Color color) {
     return Chip(
-      label: Text(label, style: AppTextStyles.caption),
-      backgroundColor: color,
+      label: Text(
+        label,
+        style: AppTextStyles.caption.copyWith(
+          color: color,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      backgroundColor: color.withValues(alpha: 0.15),
+      side: BorderSide(color: color, width: 1),
       padding: EdgeInsets.zero,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       visualDensity: VisualDensity.compact,

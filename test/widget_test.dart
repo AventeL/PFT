@@ -12,6 +12,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:pft/domain/repositories/exercise_repository.dart';
 import 'package:pft/domain/usecases/create_custom_exercise.dart';
 import 'package:pft/domain/usecases/get_exercises.dart';
+import 'package:pft/domain/usecases/search_exercises.dart';
 import 'package:pft/domain/usecases/seed_exercises.dart';
 import 'package:pft/presentation/blocs/exercise/exercise_bloc.dart';
 
@@ -21,6 +22,8 @@ class MockGetExercises extends Mock implements GetExercises {}
 class MockCreateCustomExercise extends Mock implements CreateCustomExercise {}
 
 class MockSeedExercises extends Mock implements SeedExercises {}
+
+class MockSearchExercises extends Mock implements SearchExercises {}
 
 class MockExerciseRepository extends Mock implements ExerciseRepository {}
 
@@ -32,6 +35,7 @@ void main() {
     final mockGetExercises = MockGetExercises();
     final mockCreateCustomExercise = MockCreateCustomExercise();
     final mockSeedExercises = MockSeedExercises();
+    final mockSearchExercises = MockSearchExercises();
     final mockRepository = MockExerciseRepository();
 
     // Mock the responses
@@ -46,6 +50,7 @@ void main() {
             getExercises: mockGetExercises,
             createCustomExercise: mockCreateCustomExercise,
             seedExercises: mockSeedExercises,
+            searchExercises: mockSearchExercises,
             repository: mockRepository,
           ),
           child: const Scaffold(

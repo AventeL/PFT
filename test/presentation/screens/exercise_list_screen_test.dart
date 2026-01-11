@@ -1,32 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pft/domain/entities/exercise.dart';
 import 'package:pft/domain/entities/exercise_enums.dart';
+import 'package:pft/domain/repositories/exercise_repository.dart';
+import 'package:pft/domain/usecases/create_custom_exercise.dart';
+import 'package:pft/domain/usecases/get_exercises.dart';
+import 'package:pft/domain/usecases/search_exercises.dart';
+import 'package:pft/domain/usecases/seed_exercises.dart';
 import 'package:pft/presentation/blocs/exercise/exercise_bloc.dart';
 import 'package:pft/presentation/screens/exercise_list/exercise_list_screen.dart';
-import 'package:pft/domain/usecases/get_exercises.dart';
-import 'package:pft/domain/usecases/create_custom_exercise.dart';
-import 'package:pft/domain/usecases/seed_exercises.dart';
-import 'package:pft/domain/repositories/exercise_repository.dart';
 
 // Mock classes
 class MockGetExercises extends Mock implements GetExercises {}
+
 class MockCreateCustomExercise extends Mock implements CreateCustomExercise {}
+
 class MockSeedExercises extends Mock implements SeedExercises {}
+
+class MockSearchExercises extends Mock implements SearchExercises {}
+
 class MockExerciseRepository extends Mock implements ExerciseRepository {}
 
 void main() {
   late MockGetExercises mockGetExercises;
   late MockCreateCustomExercise mockCreateCustomExercise;
   late MockSeedExercises mockSeedExercises;
+  late MockSearchExercises mockSearchExercises;
   late MockExerciseRepository mockRepository;
 
   setUp(() {
     mockGetExercises = MockGetExercises();
     mockCreateCustomExercise = MockCreateCustomExercise();
     mockSeedExercises = MockSeedExercises();
+    mockSearchExercises = MockSearchExercises();
     mockRepository = MockExerciseRepository();
   });
 
@@ -47,6 +55,7 @@ void main() {
         getExercises: mockGetExercises,
         createCustomExercise: mockCreateCustomExercise,
         seedExercises: mockSeedExercises,
+        searchExercises: mockSearchExercises,
         repository: mockRepository,
       );
 
@@ -97,6 +106,7 @@ void main() {
         getExercises: mockGetExercises,
         createCustomExercise: mockCreateCustomExercise,
         seedExercises: mockSeedExercises,
+        searchExercises: mockSearchExercises,
         repository: mockRepository,
       );
 
@@ -108,7 +118,8 @@ void main() {
       await tester.pump(); // Complete loading
 
       // Assert
-      expect(find.text('Chest'), findsWidgets); // Can appear in header and badge
+      expect(
+          find.text('Chest'), findsWidgets); // Can appear in header and badge
       expect(find.text('Legs'), findsWidgets);
       expect(find.text('Bench Press'), findsOneWidget);
       expect(find.text('Squat'), findsOneWidget);
@@ -116,13 +127,15 @@ void main() {
       bloc.close();
     });
 
-    testWidgets('displays error message and retry button when state is ExerciseError',
+    testWidgets(
+        'displays error message and retry button when state is ExerciseError',
         (WidgetTester tester) async {
       // Arrange
       final bloc = ExerciseBloc(
         getExercises: mockGetExercises,
         createCustomExercise: mockCreateCustomExercise,
         seedExercises: mockSeedExercises,
+        searchExercises: mockSearchExercises,
         repository: mockRepository,
       );
 
@@ -148,6 +161,7 @@ void main() {
         getExercises: mockGetExercises,
         createCustomExercise: mockCreateCustomExercise,
         seedExercises: mockSeedExercises,
+        searchExercises: mockSearchExercises,
         repository: mockRepository,
       );
 
@@ -163,14 +177,13 @@ void main() {
 
       bloc.close();
     });
-
-    testWidgets('retry button reloads exercises',
-        (WidgetTester tester) async {
+    testWidgets('retry button reloads exercises', (WidgetTester tester) async {
       // Arrange
       final bloc = ExerciseBloc(
         getExercises: mockGetExercises,
         createCustomExercise: mockCreateCustomExercise,
         seedExercises: mockSeedExercises,
+        searchExercises: mockSearchExercises,
         repository: mockRepository,
       );
 
@@ -202,14 +215,13 @@ void main() {
 
       bloc.close();
     });
-
-    testWidgets('displays app bar with title',
-        (WidgetTester tester) async {
+    testWidgets('displays app bar with title', (WidgetTester tester) async {
       // Arrange
       final bloc = ExerciseBloc(
         getExercises: mockGetExercises,
         createCustomExercise: mockCreateCustomExercise,
         seedExercises: mockSeedExercises,
+        searchExercises: mockSearchExercises,
         repository: mockRepository,
       );
 
@@ -226,4 +238,3 @@ void main() {
     });
   });
 }
-

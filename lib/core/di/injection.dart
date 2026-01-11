@@ -1,15 +1,17 @@
 import 'package:get_it/get_it.dart';
+
 import '../../data/database/database_helper.dart';
 import '../../data/datasources/local/exercise_local_datasource.dart';
 import '../../data/datasources/local/exercise_local_datasource_impl.dart';
 import '../../data/repositories/exercise_repository_impl.dart';
 import '../../domain/repositories/exercise_repository.dart';
-import '../../domain/usecases/get_exercises.dart';
-import '../../domain/usecases/get_exercise_by_id.dart';
 import '../../domain/usecases/create_custom_exercise.dart';
+import '../../domain/usecases/get_exercise_by_id.dart';
+import '../../domain/usecases/get_exercises.dart';
+import '../../domain/usecases/search_exercises.dart';
 import '../../domain/usecases/seed_exercises.dart';
-import '../services/exercise_seed_service.dart';
 import '../../presentation/blocs/exercise/exercise_bloc.dart';
+import '../services/exercise_seed_service.dart';
 
 final GetIt sl = GetIt.instance;
 
@@ -38,6 +40,7 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton(() => GetExerciseById(repository: sl()));
   sl.registerLazySingleton(() => CreateCustomExercise(repository: sl()));
   sl.registerLazySingleton(() => SeedExercises(seedService: sl()));
+  sl.registerLazySingleton(() => SearchExercises(sl()));
 
   // BLoCs
   sl.registerFactory(
@@ -45,8 +48,8 @@ Future<void> initDependencies() async {
       getExercises: sl(),
       createCustomExercise: sl(),
       seedExercises: sl(),
+      searchExercises: sl(),
       repository: sl(),
     ),
   );
 }
-
