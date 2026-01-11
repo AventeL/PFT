@@ -1,0 +1,778 @@
+---
+project_brief:
+  metadata:
+    project_name: "PFT - Performance Fitness Tracker"
+    version: "1.0"
+    date_created: "2026-01-11"
+    last_updated: "2026-01-11"
+    author: "Mathis"
+    status: "Planning"
+    project_type: "Mobile Application (Flutter)"
+
+  executive_summary:
+    tagline: "Votre coach de poche pour tracker et améliorer vos performances en musculation"
+
+    overview: |
+      PFT (Performance Fitness Tracker) est une application mobile native développée en Flutter
+      qui permet aux pratiquants de musculation de tracker précisément leurs séances d'entraînement,
+      suivre leur progression, et optimiser leurs performances grâce à des outils intelligents
+      comme un timer de repos adaptatif et des visualisations de progression motivantes.
+      
+      L'application adopte une approche "offline-first" pour la Phase 1, garantissant une
+      utilisation fluide même dans les salles de sport avec connexion limitée, tout en
+      posant les bases d'une future évolution sociale et gamifiée (Phase 2).
+
+    problem_statement: |
+      Les pratiquants de musculation ont du mal à tracker efficacement leurs performances:
+      
+      - Les carnets papier sont peu pratiques (encombrants, perdus, illisibles)
+      - Les apps Excel/Notes manquent de visualisation et d'insights
+      - Les apps existantes sont soit trop complexes (courbe d'apprentissage élevée),
+        soit nécessitent une connexion internet constante (problème en salle)
+      - Peu d'apps intègrent vraiment bien le timer de repos dans le workflow
+      - Manque de feedback immédiat sur la progression (motivation faible)
+      
+      Résultat: abandon du tracking ou tracking inconstant → difficulté à progresser
+
+    solution_overview: |
+      PFT résout ces problèmes en offrant:
+      
+      ✅ Interface ultra-simple optimisée pour saisie rapide (< 10s par série)
+      ✅ Fonctionnement 100% offline (stockage local SQLite/Hive)
+      ✅ Timer de repos intelligent intégré au workflow de tracking
+      ✅ Visualisations de progression immédiates et motivantes
+      ✅ Base d'exercices pré-chargée (évite friction onboarding)
+      ✅ Architecture BLoC robuste et performante
+      ✅ Écran toujours allumé pendant séance (UX pensée pour la salle)
+      
+      Phase 2 ajoutera: social, sync cloud, gamification, challenges entre amis
+
+    target_audience:
+      primary:
+        - segment: "Pratiquants réguliers de musculation"
+          description: "Personnes s'entraînant en salle 2-5 fois/semaine"
+          age_range: "18-45 ans"
+          characteristics:
+            - "Motivés à progresser et voir résultats mesurables"
+            - "Utilisent déjà smartphone pendant entraînement"
+            - "Frustrés par solutions actuelles (papier ou apps complexes)"
+            - "Niveau débutant à avancé (pas professionnels)"
+          size_estimate: "Marché cible initial: 500-1000 utilisateurs (France)"
+
+      secondary:
+        - segment: "Débutants en musculation"
+          description: "Nouveaux pratiquants cherchant structure"
+          needs: "Templates de séances, guidance exercices"
+
+        - segment: "Pratiquants home gym"
+          description: "S'entraînent chez eux avec équipement basique"
+          needs: "Tracking sans connexion, portabilité"
+
+      excluded:
+        - "Coachs professionnels gérant clients (différent use case)"
+        - "Athlètes professionnels (besoins trop spécifiques)"
+        - "Fitness casual (cardio seulement, pas de tracking poids)"
+
+    success_criteria:
+      mvp_launch:
+        - criteria: "10 utilisateurs alpha testent activement (3+ séances/semaine)"
+          metric: "10 active alpha users"
+          target_date: "2026-03-31"
+
+        - criteria: "Taux de complétion de séance > 80%"
+          metric: "> 80% completion rate"
+          target_date: "2026-03-31"
+          note: "Indique que l'app n'est pas abandonnée mid-workout"
+
+        - criteria: "Temps moyen de saisie série < 10 secondes"
+          metric: "< 10s per set entry"
+          target_date: "2026-03-31"
+          note: "KPI critique d'efficacité UX"
+
+        - criteria: "Crash-free rate > 99%"
+          metric: "> 99% stability"
+          target_date: "2026-04-30"
+
+      post_launch_6months:
+        - criteria: "100 utilisateurs actifs mensuels (MAU)"
+          metric: "100 MAU"
+          target_date: "2026-06-30"
+
+        - criteria: "Rétention J30 > 40%"
+          metric: "> 40% D30 retention"
+          target_date: "2026-06-30"
+
+        - criteria: "NPS (Net Promoter Score) > 50"
+          metric: "NPS > 50"
+          target_date: "2026-06-30"
+
+        - criteria: "Moyenne 4.5+ étoiles sur App Store / Play Store"
+          metric: "> 4.5★"
+          target_date: "2026-06-30"
+
+  objectives_and_goals:
+    business_objectives:
+      - objective: "Valider product-market fit pour app tracking musculation"
+        key_results:
+          - "100 MAU après 3 mois post-launch"
+          - "Rétention D30 > 40%"
+          - "NPS > 50"
+        timeline: "Q1-Q2 2026"
+
+      - objective: "Construire base utilisateurs engagés pour Phase 2 (social)"
+        key_results:
+          - "500 utilisateurs enregistrés fin 2026"
+          - "Taux d'engagement hebdomadaire > 60%"
+        timeline: "Q3-Q4 2026"
+
+      - objective: "Établir réputation d'app fiable et performante"
+        key_results:
+          - "> 4.5★ stores"
+          - "< 1% crash rate"
+          - "Mentions positives communautés fitness Reddit/Discord"
+        timeline: "2026"
+
+    technical_objectives:
+      - objective: "Architecture BLoC scalable et maintenable"
+        key_results:
+          - "100% couverture tests unitaires core business logic"
+          - "Architecture documentée (diagrammes + README)"
+        timeline: "Q1 2026"
+
+      - objective: "Performance optimale avec large historique"
+        key_results:
+          - "Chargement écrans < 300ms (dataset 2 ans)"
+          - "Scrolling fluide 60fps"
+        timeline: "Q1-Q2 2026"
+
+      - objective: "Foundation solide pour Phase 2 (sync cloud)"
+        key_results:
+          - "Repository pattern permettant swap persistence layer"
+          - "API contracts définis (même si non implémentés)"
+        timeline: "Q2 2026"
+
+    user_objectives:
+      - objective: "Permettre tracking sans friction"
+        key_results:
+          - "< 10s saisie par série"
+          - "> 80% taux complétion séance"
+        timeline: "MVP"
+
+      - objective: "Visualiser progression clairement"
+        key_results:
+          - "Graphiques disponibles après 3 séances"
+          - "PR célébrés automatiquement"
+        timeline: "MVP"
+
+      - objective: "Améliorer performances utilisateur"
+        key_results:
+          - "70% utilisateurs voient progression mesurable après 4 semaines"
+        timeline: "Post-launch"
+
+  scope:
+    in_scope_phase1_mvp:
+      core_features:
+        - feature: "Gestion des séances d'entraînement"
+          details:
+            - "Créer, éditer, supprimer séances personnalisées"
+            - "Templates pré-configurés (Push/Pull/Legs, Full Body, Upper/Lower)"
+            - "Dupliquer séances existantes"
+            - "Notes par séance (ressenti, conditions)"
+          priority: "P0 - Must Have"
+
+        - feature: "Base de données d'exercices"
+          details:
+            - "50+ exercices pré-chargés (principaux mouvements composés + isolations)"
+            - "Catégorisation par groupe musculaire"
+            - "Créer exercices personnalisés"
+            - "Tags: composé/isolation, poids libre/machine"
+          priority: "P0 - Must Have"
+
+        - feature: "Tracking des performances"
+          details:
+            - "Séries × Répétitions × Poids"
+            - "Mode saisie rapide (quick add)"
+            - "Copier performances dernière séance comme base"
+            - "Édition/suppression sets"
+          priority: "P0 - Must Have"
+
+        - feature: "Timer de repos intelligent"
+          details:
+            - "Timer personnalisable par exercice"
+            - "Temps de repos recommandés (Force: 3-5min, Hypertrophie: 1-3min)"
+            - "Notifications vibration/son"
+            - "Affichage plein écran du timer"
+            - "Option repos flexible vs strict"
+          priority: "P0 - Must Have"
+          notes: "KILLER FEATURE - différenciation majeure"
+
+        - feature: "Historique et progression"
+          details:
+            - "Historique complet par exercice"
+            - "Graphiques progression (poids max, volume total)"
+            - "Personal Records (PR) par exercice"
+            - "Statistiques: séances complétées, volume total"
+          priority: "P0 - Must Have"
+
+        - feature: "Stockage local offline"
+          details:
+            - "SQLite ou Hive pour persistence"
+            - "Aucune connexion requise"
+            - "Sauvegarde auto en cas d'interruption"
+          priority: "P0 - Must Have"
+
+        - feature: "UX optimisée salle de sport"
+          details:
+            - "Mode sombre/clair"
+            - "Écran toujours allumé pendant séance"
+            - "Grandes zones tactiles (mains moites)"
+            - "Feedback haptique"
+          priority: "P0 - Must Have"
+
+      nice_to_have_phase1:
+        - "Chronomètre pour exercices isométriques (planche, gainage)"
+        - "RIR (Reps In Reserve) / RPE tracking"
+        - "Calendrier séances planifiées"
+        - "Variantes d'exercices"
+        - "Export backup données (JSON)"
+
+    out_of_scope_phase1:
+      deferred_to_phase2:
+        - "Sync cloud multi-devices (Phase 2 Q3 2026)"
+        - "Système d'amis / social features (Phase 2 Q3 2026)"
+        - "Partage de séances (Phase 2 Q3 2026)"
+        - "Gamification (badges, XP, achievements) (Phase 2 Q4 2026)"
+        - "Challenges entre utilisateurs (Phase 2 Q4 2026)"
+
+      explicitly_excluded:
+        - "Plans nutrition intégrés (hors expertise)"
+        - "Analyse vidéo de forme (trop complexe, risques légaux)"
+        - "Coach IA / programmes générés (nécessite ML, Phase 3+)"
+        - "Intégration wearables (Apple Watch, Garmin) (Phase 3+)"
+        - "Marketplace de programmes (hors scope commercial actuel)"
+        - "Fonctionnalités cardio/HIIT avancées (focus musculation)"
+
+  technical_architecture:
+    stack:
+      frontend:
+        - technology: "Flutter 3.x+"
+          justification: "Cross-platform iOS/Android, performance native, ecosystème mature"
+
+        - technology: "Dart language"
+          justification: "Langage de Flutter, fortement typé, null-safety"
+
+      state_management:
+        - technology: "flutter_bloc (BLoC pattern)"
+          justification: "Architecture claire, testable, scalable, séparation business logic / UI"
+          version: "^8.1.0"
+
+      persistence:
+        - technology: "sqflite ou Hive"
+          justification: "SQLite = relationnel éprouvé, Hive = NoSQL performant, décision à finaliser"
+          decision_pending: true
+          criteria: "Tests de performance avec dataset réaliste (2 ans d'usage)"
+
+      ui_components:
+        - "Material Design 3 (Material You)"
+        - "Custom widgets pour timer, graphiques"
+        - "fl_chart pour visualisations"
+
+      testing:
+        - "unit tests (bloc logic)"
+        - "widget tests (UI components)"
+        - "integration tests (user flows critiques)"
+
+    architecture_patterns:
+      - pattern: "BLoC (Business Logic Component)"
+        application: "Gestion d'état centralisée, séparation concerns"
+
+      - pattern: "Repository Pattern"
+        application: "Abstraction couche persistence, facilite swap SQLite/Hive/API future"
+
+      - pattern: "Clean Architecture (adapté)"
+        layers:
+          - "Presentation Layer: UI + BLoCs"
+          - "Domain Layer: Entities, Use Cases"
+          - "Data Layer: Repositories, Data Sources"
+
+      - pattern: "Dependency Injection"
+        application: "get_it pour DI, testabilité"
+
+    data_model_overview:
+      entities:
+        - entity: "Workout (Séance)"
+          attributes:
+            - "id: String (UUID)"
+            - "name: String"
+            - "description: String?"
+            - "exercises: List<WorkoutExercise>"
+            - "notes: String?"
+            - "createdAt: DateTime"
+            - "updatedAt: DateTime"
+
+        - entity: "Exercise (Exercice)"
+          attributes:
+            - "id: String (UUID)"
+            - "name: String"
+            - "muscleGroup: MuscleGroup (enum)"
+            - "category: ExerciseCategory (enum: compound/isolation)"
+            - "equipmentType: EquipmentType (enum: barbell/dumbbell/machine/bodyweight)"
+            - "isCustom: bool"
+            - "instructions: String?"
+
+        - entity: "WorkoutSession (Instance de séance réalisée)"
+          attributes:
+            - "id: String (UUID)"
+            - "workoutId: String"
+            - "startTime: DateTime"
+            - "endTime: DateTime?"
+            - "status: SessionStatus (enum: active/completed/abandoned)"
+            - "performedExercises: List<PerformedExercise>"
+            - "notes: String?"
+
+        - entity: "PerformedExercise"
+          attributes:
+            - "exerciseId: String"
+            - "sets: List<SetRecord>"
+            - "restTime: Duration?"
+
+        - entity: "SetRecord"
+          attributes:
+            - "setNumber: int"
+            - "reps: int"
+            - "weight: double"
+            - "rpe: int? (1-10)"
+            - "timestamp: DateTime"
+
+      relationships:
+        - "Workout 1:N WorkoutExercise (ordre d'exercices dans séance)"
+        - "Exercise 1:N PerformedExercise (historique)"
+        - "WorkoutSession 1:N PerformedExercise"
+        - "PerformedExercise 1:N SetRecord"
+
+    key_blocs:
+      - bloc: "WorkoutBloc"
+        responsibility: "CRUD séances, templates"
+        events: "CreateWorkout, UpdateWorkout, DeleteWorkout, LoadWorkouts"
+        states: "WorkoutLoading, WorkoutLoaded, WorkoutError"
+
+      - bloc: "ExerciseBloc"
+        responsibility: "Gestion base exercices"
+        events: "LoadExercises, CreateExercise, FilterByMuscleGroup"
+        states: "ExercisesLoaded, ExercisesFiltered"
+
+      - bloc: "ActiveWorkoutBloc"
+        responsibility: "Gestion séance en cours (state critique)"
+        events: "StartWorkout, AddSet, RemoveSet, CompleteExercise, PauseWorkout, EndWorkout"
+        states: "WorkoutActive, RestTimer, ExerciseCompleted, WorkoutPaused"
+
+      - bloc: "TimerBloc"
+        responsibility: "Gestion timer de repos"
+        events: "StartTimer, PauseTimer, ResetTimer, TimerTick"
+        states: "TimerRunning, TimerPaused, TimerCompleted"
+
+      - bloc: "HistoryBloc"
+        responsibility: "Historique et statistiques"
+        events: "LoadHistory, LoadExerciseProgress, CalculateStats"
+        states: "HistoryLoaded, ProgressLoaded, StatsCalculated"
+
+  roadmap:
+    phase_1_mvp:
+      timeline: "Q1 2026 (Janvier - Mars)"
+      goal: "Launch MVP fonctionnel en Alpha Testing"
+
+      milestones:
+        - milestone: "M1: Foundation & Setup"
+          date: "2026-01-24 (Semaine 2-3)"
+          deliverables:
+            - "Projet Flutter configuré + CI/CD (GitHub Actions)"
+            - "Architecture BLoC structurée + diagrammes"
+            - "Data models définis"
+            - "Base exercices initiale (50+ exercices en JSON/YAML)"
+            - "Tests unitaires setup"
+
+        - milestone: "M2: Core Data Layer"
+          date: "2026-02-07 (Semaine 4-5)"
+          deliverables:
+            - "Repositories implémentés (SQLite ou Hive)"
+            - "CRUD Workouts & Exercises"
+            - "Persistence testée (unit + integration tests)"
+            - "Seed data loading"
+
+        - milestone: "M3: Workout Management UI"
+          date: "2026-02-21 (Semaine 6-7)"
+          deliverables:
+            - "Home screen + workout list"
+            - "Workout Builder (CRUD UI)"
+            - "Exercise Library + search"
+            - "Templates pré-configurés"
+
+        - milestone: "M4: Active Workout Flow (CRITIQUE)"
+          date: "2026-03-14 (Semaine 8-10)"
+          deliverables:
+            - "Active Workout screen complète"
+            - "Set tracking (quick add optimisé)"
+            - "Timer de repos intégré (notifications)"
+            - "Session state management robuste"
+            - "Auto-save + crash recovery"
+
+        - milestone: "M5: History & Analytics"
+          date: "2026-03-28 (Semaine 11-12)"
+          deliverables:
+            - "Exercise history avec graphiques (fl_chart)"
+            - "Personal Records tracking + célébrations"
+            - "Statistics dashboard"
+            - "Session detail view"
+
+        - milestone: "M6: Polish & Alpha Launch"
+          date: "2026-04-11 (Semaine 13-14)"
+          deliverables:
+            - "UI polish (animations, transitions)"
+            - "Onboarding screens"
+            - "Settings + preferences"
+            - "Bug fixes from internal testing"
+            - "TestFlight / Play Store Internal Testing release"
+            - "Documentation utilisateur basique"
+
+      alpha_testing:
+        start_date: "2026-04-11"
+        duration: "2 semaines"
+        participants: "5-10 pratiquants musculation (amis, famille, communauté locale)"
+        goals:
+          - "Identifier bugs critiques"
+          - "Valider UX core flows"
+          - "Mesurer temps saisie série (<10s?)"
+          - "Taux complétion séance (>80%?)"
+        feedback_channels: "Google Form + Discord privé"
+
+    phase_1_5_post_mvp_iterations:
+      timeline: "Q2 2026 (Avril - Juin)"
+      goal: "Public Beta, acquisition premiers 100 utilisateurs, itérations basées feedback"
+
+      milestones:
+        - milestone: "Beta Publique"
+          date: "2026-04-25"
+          deliverables:
+            - "Fixes critiques alpha"
+            - "App Store + Play Store soumissions"
+            - "Landing page simple (value prop + download links)"
+            - "Analytics intégrés (Firebase Analytics - respectueux privacy)"
+
+        - milestone: "Itérations Feedback"
+          date: "2026-05-30"
+          deliverables:
+            - "Features P1 Should-Have basées sur feedback utilisateurs"
+            - "Optimisations performance"
+            - "A/B tests sur flows critiques"
+
+        - milestone: "Launch v1.0 Public"
+          date: "2026-06-15"
+          deliverables:
+            - "Version stable 1.0"
+            - "Documentation complète"
+            - "Marketing initial (Reddit fitness, Discord, bouche-à-oreille)"
+
+    phase_2_social_gamification:
+      timeline: "Q3-Q4 2026"
+      goal: "Transformer app locale en plateforme sociale"
+
+      prerequisites:
+        - "Base utilisateurs solide (>100 MAU)"
+        - "Rétention Phase 1 validée (>40% D30)"
+        - "Infrastructure backend prête (Firebase, Auth, Firestore)"
+
+      features_roadmap:
+        q3_2026:
+          - "Backend setup (Firebase Auth, Firestore, Cloud Functions)"
+          - "User accounts + authentication"
+          - "Cloud sync multi-devices"
+          - "Système d'amis basique"
+          - "Partage de séances"
+
+        q4_2026:
+          - "Feed d'activité"
+          - "Badges & achievements"
+          - "Challenges entre amis"
+          - "Leaderboards (optionnels, opt-in)"
+          - "Push notifications sociales"
+
+      monetization_consideration:
+        model: "Freemium"
+        free_tier: "App locale complète (Phase 1 features)"
+        premium_tier: "€3.99/mois ou €29.99/an"
+        premium_features:
+          - "Cloud sync multi-devices"
+          - "Social features illimités"
+          - "Analytics avancées"
+          - "Export données (CSV, PDF)"
+          - "Themes personnalisés"
+
+  competitive_analysis_summary:
+    note: "Analyse détaillée recommandée via *create-competitor-analysis"
+
+    key_competitors:
+      - competitor: "Strong"
+        strengths:
+          - "UI très polie et moderne"
+          - "Large base utilisateurs (500k+)"
+          - "Cloud sync"
+          - "Graphiques avancés"
+        weaknesses:
+          - "Paywall agressif (€10/mois)"
+          - "Nécessite compte obligatoire"
+          - "Complexe pour débutants"
+          - "Connexion requise"
+        our_advantage: "Gratuit, offline, plus simple"
+
+      - competitor: "JEFIT"
+        strengths:
+          - "Énorme base exercices (1300+)"
+          - "Communauté active"
+          - "Plans d'entraînement marketplace"
+        weaknesses:
+          - "UI datée (2015 vibes)"
+          - "Ads intrusives"
+          - "Performance médiocre"
+          - "Trop de features = confusing"
+        our_advantage: "UX moderne, focus, pas d'ads"
+
+      - competitor: "FitNotes"
+        strengths:
+          - "Simple et efficace"
+          - "100% gratuit"
+          - "Pas de compte requis"
+          - "Offline"
+        weaknesses:
+          - "Android only"
+          - "UI très basique"
+          - "Pas de timer intégré (!)"
+          - "Graphiques limités"
+        our_advantage: "iOS+Android, timer killer, UX moderne, graphiques"
+
+      - competitor: "Hevy"
+        strengths:
+          - "UX moderne similaire à Strong"
+          - "Social features"
+          - "Freemium équilibré"
+        weaknesses:
+          - "Connexion requise dès début"
+          - "Cloud-dependent"
+          - "Moins focus timer"
+        our_advantage: "Offline-first, timer meilleur"
+
+    market_positioning:
+      our_niche: "App musculation moderne, offline-first, avec timer killer, pour pratiquants réguliers"
+      key_differentiators:
+        - "Offline-first (fonctionne sans connexion)"
+        - "Timer de repos vraiment bien intégré (killer feature)"
+        - "UX ultra-efficace (< 10s par série)"
+        - "100% gratuit Phase 1 (pas paywall, pas ads)"
+        - "Privacy-focused (données locales)"
+
+      target_market_gap: |
+        Il existe des apps complexes/chères (Strong, JEFIT) et des apps simples/datées (FitNotes).
+        Gap: App MODERNE + SIMPLE + GRATUITE + OFFLINE + TIMER EXCELLENT.
+        C'est notre positionnement.
+
+  budget_and_costs:
+    development_phase_q1_2026:
+      - item: "Apple Developer Program"
+        cost: "$99"
+        frequency: "Annual"
+        timing: "Mars 2026"
+
+      - item: "Google Play Developer"
+        cost: "$25"
+        frequency: "One-time"
+        timing: "Mars 2026"
+
+      - item: "Firebase (Spark plan)"
+        cost: "$0"
+        note: "Suffisant Phase 1 (< 10k events/jour)"
+
+      - item: "GitHub (Free plan)"
+        cost: "$0"
+        note: "Public repo ou Free private"
+
+      - item: "Domaine web (optionnel landing page)"
+        cost: "~$12/an"
+        frequency: "Annual"
+        optional: true
+
+      - item: "Hosting landing page (optionnel)"
+        cost: "$0"
+        note: "Netlify/Vercel free tier"
+        optional: true
+
+      total_mvp: "$124-136"
+      note: "Extrêmement low-cost pour MVP"
+
+    post_launch_q2_q3_2026:
+      - item: "Firebase Blaze (si dépassement)"
+        cost: "~$10-50/mois"
+        note: "Si > 10k MAU, analytics + crashlytics scaling"
+
+      - item: "Marketing (optionnel)"
+        cost: "$0-500"
+        note: "Reddit ads, App Store Search Ads si budget"
+        optional: true
+
+      estimated_monthly_q2_q3: "$10-50 (+ optionnel marketing)"
+
+  risks_and_mitigations:
+    technical_risks:
+      - risk: "Performance dégradée avec gros historique (2+ ans)"
+        likelihood: "Medium"
+        impact: "High"
+        mitigation:
+          - "Tests de performance dès M2 avec datasets réalistes (100k+ sets)"
+          - "Indexation database optimisée"
+          - "Lazy loading et pagination systématiques"
+          - "Profiling régulier (Flutter DevTools)"
+
+      - risk: "Perte de données (crash, interruption)"
+        likelihood: "Medium"
+        impact: "Critical"
+        mitigation:
+          - "Auto-save toutes les 30s pendant séance active"
+          - "State persistence au background/pause"
+          - "Tests exhaustifs scénarios interruption (appel, batterie morte)"
+          - "Backup local automatique quotidien"
+
+      - risk: "Bugs critiques non détectés pré-launch"
+        likelihood: "Medium"
+        impact: "High"
+        mitigation:
+          - "Couverture tests >80% (unit + widget + integration)"
+          - "Alpha testing 2 semaines avec utilisateurs réels"
+          - "Crash reporting (Sentry ou Firebase Crashlytics)"
+          - "Beta publique progressive (10 users → 50 → 100)"
+
+    product_risks:
+      - risk: "UX trop complexe, abandon utilisateurs"
+        likelihood: "Medium"
+        impact: "Critical"
+        mitigation:
+          - "User testing dès wireframes"
+          - "Onboarding < 2 min"
+          - "Wizard première séance guidée"
+          - "Analytics sur friction points (où abandons?)"
+
+      - risk: "Valeur insuffisante vs carnets papier/Excel"
+        likelihood: "Low"
+        impact: "High"
+        mitigation:
+          - "Focus sur differentiation: Timer intelligent + Graphiques + PRs"
+          - "Valeur visible dès 3 séances (premier graphique)"
+          - "Célébrations PRs = dopamine hit"
+
+      - risk: "Base exercices incomplète/incorrecte"
+        likelihood: "Medium"
+        impact: "Medium"
+        mitigation:
+          - "Sourcer depuis base open-source (wger.de API)"
+          - "Commencer avec 50 exercices essentiels = 90% usage"
+          - "Permettre exercices customs"
+          - "Crowdsourcing Phase 2 (contributions validées)"
+
+    market_risks:
+      - risk: "Concurrence (Strong, JEFIT, FitNotes, etc.)"
+        likelihood: "High"
+        impact: "Medium"
+        mitigation:
+          - "Positionnement clair: Offline-first + Timer killer + UX moderne"
+          - "Niche focus musculation (pas fitness général)"
+          - "Free & privacy-focused (différenciation éthique)"
+          - "Communauté early adopters (Reddit, Discord)"
+
+      - risk: "Adoption utilisateur faible"
+        likelihood: "Medium"
+        impact: "High"
+        mitigation:
+          - "Landing page claire (value prop)"
+          - "App Store Optimization (ASO)"
+          - "Bouche-à-oreille (encourager partage)"
+          - "Contenu éducatif (blog, YouTube: pourquoi tracker?)"
+
+      - risk: "Rétention faible après initial enthusiasm"
+        likelihood: "Medium"
+        impact: "High"
+        mitigation:
+          - "Push notifications intelligentes (rappels séance, célébrations)"
+          - "Streaks visibles (motivation extrinsèque)"
+          - "Email drip campaign (tips progression)"
+          - "Phase 2 social = retention booster"
+
+  success_metrics_detailed:
+    acquisition_metrics:
+      - metric: "Downloads"
+        target_mvp: "50 downloads (alpha + beta)"
+        target_6months: "500 downloads"
+        measurement: "App Store Connect + Google Play Console"
+
+      - metric: "Conversion install → première séance créée"
+        target: "> 60%"
+        measurement: "Firebase Analytics event tracking"
+
+      - metric: "Onboarding completion rate"
+        target: "> 80%"
+        measurement: "Analytics: welcome_completed event"
+
+    engagement_metrics:
+      - metric: "Active users (DAU, WAU, MAU)"
+        target_mvp: "10 WAU"
+        target_6months: "100 MAU, 40 WAU"
+        measurement: "Firebase Analytics"
+
+      - metric: "Sessions per user per week"
+        target: "3+ sessions/week (pratiquants réguliers)"
+        measurement: "Analytics: workout_started events"
+
+      - metric: "Average session duration"
+        target: "45-90 min (typique séance musculation)"
+        measurement: "Time between workout_started → workout_completed"
+
+      - metric: "Sets tracked per user"
+        target: "50+ sets/week (indicateur engagement)"
+        measurement: "Database queries"
+
+    retention_metrics:
+      - metric: "D1 retention (revient lendemain)"
+        target: "> 70%"
+        measurement: "Cohort analysis Firebase"
+
+      - metric: "D7 retention"
+        target: "> 50%"
+        measurement: "Cohort analysis"
+
+      - metric: "D30 retention"
+        target: "> 40%"
+        measurement: "Cohort analysis (KPI critique)"
+
+      - metric: "Churn rate mensuel"
+        target: "< 10%"
+        measurement: "Users inactifs 30+ jours"
+
+    quality_metrics:
+      - metric: "Crash-free rate"
+        target: "> 99%"
+        measurement: "Firebase Crashlytics"
+
+      - metric: "App Store rating"
+        target: "> 4.5★"
+        measurement: "App Store Connect + Play Console"
+
+      - metric: "NPS (Net Promoter Score)"
+        target: "> 50"
+        measurement: "In-app survey (après 10 séances complétées)"
+
+      - metric: "Average set entry time"
+        target: "< 10 seconds"
+        measurement: "Analytics: time between set_started → set_completed"
+
+      - metric: "Workout completion rate"
+        target: "> 80%"
+        measurement: "workout_started vs workout_completed events"
+
+---
+

@@ -1,0 +1,52 @@
+name: pft
+description: "Performance Fitness Tracker - Track your workouts, rest timer, and progression"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Core Dependencies
+  flutter_bloc: ^8.1.0          # State management
+  sqflite: ^2.3.0               # Local database
+  get_it: ^7.6.0                # Dependency injection
+  uuid: ^4.0.0                  # UUID generation
+  equatable: ^2.0.5             # Value equality
+
+  # Features
+  wakelock_plus: ^1.2.0         # Keep screen on during workout (updated package name)
+  flutter_local_notifications: ^16.3.0  # Timer notifications
+  audioplayers: ^5.2.0          # Timer sound
+  shared_preferences: ^2.2.0    # Settings persistence
+  intl: ^0.18.0                 # Date formatting
+  timezone: ^0.9.0              # For scheduled notifications (Story 4.5)
+
+  # UX
+  shimmer: ^3.0.0               # Loading states
+  confetti: ^0.7.0              # PR celebrations
+  fl_chart: ^0.66.0             # Progress charts
+
+  # Utils
+  path_provider: ^2.1.0         # File storage
+  share_plus: ^7.2.0            # Data export
+  introduction_screen: ^3.1.0   # Onboarding
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  mockito: ^5.4.0               # Testing
+  bloc_test: ^9.1.0             # BLoC testing
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/data/exercises.json
+    - assets/data/workout_templates.json
+    - assets/sounds/
+

@@ -1,0 +1,287 @@
+{
+  "templates": [
+    {
+      "id": "tmpl_001",
+      "name": "Push Day (Chest, Shoulders, Triceps)",
+      "description": "Classic push workout focusing on pressing movements",
+      "isTemplate": true,
+      "exercises": [
+        {
+          "exerciseId": "ex_001",
+          "orderIndex": 0,
+          "targetSets": 4,
+          "restTime": 180
+        },
+        {
+          "exerciseId": "ex_002",
+          "orderIndex": 1,
+          "targetSets": 3,
+          "restTime": 120
+        },
+        {
+          "exerciseId": "ex_013",
+          "orderIndex": 2,
+          "targetSets": 4,
+          "restTime": 180
+        },
+        {
+          "exerciseId": "ex_014",
+          "orderIndex": 3,
+          "targetSets": 3,
+          "restTime": 90
+        },
+        {
+          "exerciseId": "ex_022",
+          "orderIndex": 4,
+          "targetSets": 3,
+          "restTime": 90
+        },
+        {
+          "exerciseId": "ex_023",
+          "orderIndex": 5,
+          "targetSets": 3,
+          "restTime": 90
+        }
+      ]
+    },
+    {
+      "id": "tmpl_002",
+      "name": "Pull Day (Back, Biceps)",
+      "description": "Complete back and biceps workout",
+      "isTemplate": true,
+      "exercises": [
+        {
+          "exerciseId": "ex_012",
+          "orderIndex": 0,
+          "targetSets": 4,
+          "restTime": 240
+        },
+        {
+          "exerciseId": "ex_007",
+          "orderIndex": 1,
+          "targetSets": 4,
+          "restTime": 180
+        },
+        {
+          "exerciseId": "ex_006",
+          "orderIndex": 2,
+          "targetSets": 4,
+          "restTime": 180
+        },
+        {
+          "exerciseId": "ex_009",
+          "orderIndex": 3,
+          "targetSets": 3,
+          "restTime": 120
+        },
+        {
+          "exerciseId": "ex_011",
+          "orderIndex": 4,
+          "targetSets": 3,
+          "restTime": 90
+        },
+        {
+          "exerciseId": "ex_019",
+          "orderIndex": 5,
+          "targetSets": 3,
+          "restTime": 90
+        },
+        {
+          "exerciseId": "ex_021",
+          "orderIndex": 6,
+          "targetSets": 3,
+          "restTime": 90
+        }
+      ]
+    },
+    {
+      "id": "tmpl_003",
+      "name": "Leg Day",
+      "description": "Complete lower body workout",
+      "isTemplate": true,
+      "exercises": [
+        {
+          "exerciseId": "ex_027",
+          "orderIndex": 0,
+          "targetSets": 4,
+          "restTime": 240
+        },
+        {
+          "exerciseId": "ex_028",
+          "orderIndex": 1,
+          "targetSets": 3,
+          "restTime": 180
+        },
+        {
+          "exerciseId": "ex_029",
+          "orderIndex": 2,
+          "targetSets": 3,
+          "restTime": 120
+        },
+        {
+          "exerciseId": "ex_030",
+          "orderIndex": 3,
+          "targetSets": 3,
+          "restTime": 90
+        },
+        {
+          "exerciseId": "ex_031",
+          "orderIndex": 4,
+          "targetSets": 3,
+          "restTime": 90
+        },
+        {
+          "exerciseId": "ex_034",
+          "orderIndex": 5,
+          "targetSets": 4,
+          "restTime": 60
+        }
+      ]
+    },
+    {
+      "id": "tmpl_004",
+      "name": "Upper Body",
+      "description": "Full upper body workout for efficiency",
+      "isTemplate": true,
+      "exercises": [
+        {
+          "exerciseId": "ex_001",
+          "orderIndex": 0,
+          "targetSets": 4,
+          "restTime": 180
+        },
+        {
+          "exerciseId": "ex_006",
+          "orderIndex": 1,
+          "targetSets": 4,
+          "restTime": 180
+        },
+        {
+          "exerciseId": "ex_013",
+          "orderIndex": 2,
+          "targetSets": 3,
+          "restTime": 120
+        },
+        {
+          "exerciseId": "ex_008",
+          "orderIndex": 3,
+          "targetSets": 3,
+          "restTime": 120
+        },
+        {
+          "exerciseId": "ex_020",
+          "orderIndex": 4,
+          "targetSets": 3,
+          "restTime": 90
+        },
+        {
+          "exerciseId": "ex_022",
+          "orderIndex": 5,
+          "targetSets": 3,
+          "restTime": 90
+        }
+      ]
+    },
+    {
+      "id": "tmpl_005",
+      "name": "Full Body Beginner",
+      "description": "Great starting point for beginners, 3x per week",
+      "isTemplate": true,
+      "exercises": [
+        {
+          "exerciseId": "ex_027",
+          "orderIndex": 0,
+          "targetSets": 3,
+          "restTime": 180
+        },
+        {
+          "exerciseId": "ex_001",
+          "orderIndex": 1,
+          "targetSets": 3,
+          "restTime": 180
+        },
+        {
+          "exerciseId": "ex_006",
+          "orderIndex": 2,
+          "targetSets": 3,
+          "restTime": 180
+        },
+        {
+          "exerciseId": "ex_013",
+          "orderIndex": 3,
+          "targetSets": 3,
+          "restTime": 120
+        },
+        {
+          "exerciseId": "ex_020",
+          "orderIndex": 4,
+          "targetSets": 2,
+          "restTime": 90
+        },
+        {
+          "exerciseId": "ex_022",
+          "orderIndex": 5,
+          "targetSets": 2,
+          "restTime": 90
+        },
+        {
+          "exerciseId": "ex_037",
+          "orderIndex": 6,
+          "targetSets": 3,
+          "restTime": 60
+        }
+      ]
+    },
+    {
+      "id": "tmpl_006",
+      "name": "Home Workout (Bodyweight)",
+      "description": "No equipment needed, perfect for home training",
+      "isTemplate": true,
+      "exercises": [
+        {
+          "exerciseId": "ex_004",
+          "orderIndex": 0,
+          "targetSets": 4,
+          "restTime": 90
+        },
+        {
+          "exerciseId": "ex_007",
+          "orderIndex": 1,
+          "targetSets": 4,
+          "restTime": 120
+        },
+        {
+          "exerciseId": "ex_025",
+          "orderIndex": 2,
+          "targetSets": 3,
+          "restTime": 90
+        },
+        {
+          "exerciseId": "ex_033",
+          "orderIndex": 3,
+          "targetSets": 3,
+          "restTime": 90
+        },
+        {
+          "exerciseId": "ex_037",
+          "orderIndex": 4,
+          "targetSets": 3,
+          "restTime": 60
+        },
+        {
+          "exerciseId": "ex_040",
+          "orderIndex": 5,
+          "targetSets": 3,
+          "restTime": 90
+        },
+        {
+          "exerciseId": "ex_043",
+          "orderIndex": 6,
+          "targetSets": 3,
+          "restTime": 60
+        }
+      ]
+    }
+  ]
+}
+

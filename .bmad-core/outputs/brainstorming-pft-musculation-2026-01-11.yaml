@@ -1,0 +1,591 @@
+---
+brainstorming_session:
+  title: "PFT - Performance Fitness Tracker - Session de Brainstorming"
+  date: 2026-01-11
+  facilitator: Mary (Business Analyst)
+  participants:
+    - Mathis (Product Owner / Developer)
+  duration: "45 minutes"
+
+context:
+  project_name: "PFT (Performance Fitness Tracker)"
+  technology_stack: "Flutter + BLoC Architecture"
+  target_platform: "Mobile (iOS/Android)"
+  primary_domain: "Fitness - Musculation/Strength Training"
+
+vision:
+  description: |
+    Application mobile de suivi de performances en musculation, permettant aux pratiquants
+    de salle de sport de tracker leurs séances, exercices, séries, répétitions et poids.
+    Évolution progressive d'une app locale vers une plateforme sociale gamifiée.
+
+  target_users:
+    - type: "Pratiquants de musculation"
+      profile: "Personnes s'entraînant en salle de sport"
+      level: "Débutant à avancé"
+      needs:
+        - "Suivre progression sur exercices"
+        - "Organiser séances d'entraînement"
+        - "Timer de repos automatique"
+        - "Historique et statistiques"
+      exclusions: "Pas de focus sur les coachs professionnels initialement"
+
+  phasing:
+    phase_1:
+      name: "MVP Local"
+      description: "Application locale, offline-first, focus individuel"
+      timeline: "Q1-Q2 2026"
+      key_features:
+        - "Gestion séances et exercices"
+        - "Tracking séries/reps/poids"
+        - "Timer de repos intelligent"
+        - "Stockage local (SQLite/Hive)"
+        - "Visualisation progression basique"
+
+    phase_2:
+      name: "Social & Gamification"
+      description: "Ajout dimension sociale et éléments de jeu"
+      timeline: "Q3-Q4 2026"
+      key_features:
+        - "Système d'amis"
+        - "Partage de séances"
+        - "Badges et achievements"
+        - "Challenges entre utilisateurs"
+        - "Sync cloud multi-devices"
+
+ideas_generated:
+
+  category_1_gestion_seances:
+    title: "Gestion des Séances"
+    priority: "CRITIQUE - MVP"
+    ideas:
+      - id: "S01"
+        description: "Créer séances personnalisées (nom, description, groupes musculaires)"
+        priority: "P0 - Must Have"
+        effort: "Medium"
+        value: "High"
+
+      - id: "S02"
+        description: "Templates de séances pré-configurées (Push/Pull/Legs, Full Body, Split)"
+        priority: "P1 - Should Have"
+        effort: "Medium"
+        value: "High"
+        notes: "Accélère onboarding nouveaux utilisateurs"
+
+      - id: "S03"
+        description: "Dupliquer/modifier des séances existantes"
+        priority: "P1 - Should Have"
+        effort: "Low"
+        value: "Medium"
+
+      - id: "S04"
+        description: "Organiser par programme (ex: Programme Débutant 8 semaines)"
+        priority: "P2 - Nice to Have"
+        effort: "High"
+        value: "Medium"
+        phase: "Post-MVP"
+
+      - id: "S05"
+        description: "Calendrier des séances planifiées vs réalisées"
+        priority: "P2 - Nice to Have"
+        effort: "Medium"
+        value: "Medium"
+
+      - id: "S06"
+        description: "Notes personnelles par séance (ressenti, énergie, conditions)"
+        priority: "P1 - Should Have"
+        effort: "Low"
+        value: "High"
+        notes: "Aide à identifier patterns de performance"
+
+  category_2_tracking_exercices:
+    title: "Tracking des Exercices"
+    priority: "CRITIQUE - MVP"
+    ideas:
+      - id: "E01"
+        description: "Créer exercices personnalisés"
+        priority: "P0 - Must Have"
+        effort: "Medium"
+        value: "High"
+
+      - id: "E02"
+        description: "Base de données d'exercices pré-chargés (150+ exercices communs)"
+        priority: "P0 - Must Have"
+        effort: "High"
+        value: "Critical"
+        notes: "Besoin de sourcer/créer cette base de données"
+
+      - id: "E03"
+        description: "Catégorisation par groupe musculaire (pectoraux, dos, jambes, etc.)"
+        priority: "P0 - Must Have"
+        effort: "Low"
+        value: "High"
+
+      - id: "E04"
+        description: "Tags multiples (composé, isolation, poids libre, machine, élastiques)"
+        priority: "P1 - Should Have"
+        effort: "Low"
+        value: "Medium"
+
+      - id: "E05"
+        description: "Instructions/tutoriels par exercice (texte/images)"
+        priority: "P2 - Nice to Have"
+        effort: "Very High"
+        value: "Medium"
+        phase: "Post-MVP"
+        notes: "Nécessite création contenu ou licensing"
+
+      - id: "E06"
+        description: "Variantes d'exercices (incliné/décliné, prise large/serrée)"
+        priority: "P1 - Should Have"
+        effort: "Medium"
+        value: "Medium"
+
+      - id: "E07"
+        description: "Historique complet par exercice avec graphiques de progression"
+        priority: "P0 - Must Have"
+        effort: "High"
+        value: "Critical"
+        notes: "Core value proposition"
+
+  category_3_enregistrement_performances:
+    title: "Enregistrement des Performances"
+    priority: "CRITIQUE - MVP"
+    ideas:
+      - id: "P01"
+        description: "Tracking Séries × Répétitions × Poids"
+        priority: "P0 - Must Have"
+        effort: "High"
+        value: "Critical"
+        notes: "Fonctionnalité centrale de l'app"
+
+      - id: "P02"
+        description: "Superset / Dropset / Rest-Pause tracking"
+        priority: "P2 - Nice to Have"
+        effort: "Medium"
+        value: "Low"
+        phase: "Post-MVP"
+        notes: "Pour utilisateurs avancés"
+
+      - id: "P03"
+        description: "Tempo d'exécution (3-0-1-0 notation)"
+        priority: "P3 - Won't Have (v1)"
+        effort: "Low"
+        value: "Low"
+        notes: "Très niche, complexifie UX"
+
+      - id: "P04"
+        description: "RIR (Reps In Reserve) / RPE (Rate of Perceived Exertion)"
+        priority: "P2 - Nice to Have"
+        effort: "Low"
+        value: "Medium"
+        notes: "Utile pour progression intelligente"
+
+      - id: "P05"
+        description: "Mode 'quick add' pour saisie rapide pendant entraînement"
+        priority: "P0 - Must Have"
+        effort: "Medium"
+        value: "Critical"
+        notes: "UX critique - utilisateur en plein effort"
+
+      - id: "P06"
+        description: "Copier les performances de la dernière séance comme base"
+        priority: "P1 - Should Have"
+        effort: "Medium"
+        value: "High"
+        notes: "Accélère saisie, encourage progression"
+
+      - id: "P07"
+        description: "Suggestions automatiques basées sur progression (+2.5kg)"
+        priority: "P2 - Nice to Have"
+        effort: "High"
+        value: "Medium"
+        phase: "Post-MVP"
+        notes: "Nécessite algorithme de progression"
+
+  category_4_timer_repos:
+    title: "Timer & Gestion des Repos"
+    priority: "CRITIQUE - MVP"
+    ideas:
+      - id: "T01"
+        description: "Timer de repos personnalisable par exercice"
+        priority: "P0 - Must Have"
+        effort: "Medium"
+        value: "Critical"
+        notes: "Fonctionnalité différenciante clé"
+
+      - id: "T02"
+        description: "Temps de repos recommandés par type d'exercice/objectif"
+        priority: "P1 - Should Have"
+        effort: "Low"
+        value: "High"
+        notes: "Force: 3-5min, Hypertrophie: 1-3min, Endurance: 30s-1min"
+
+      - id: "T03"
+        description: "Notifications vibration/son quand repos terminé"
+        priority: "P0 - Must Have"
+        effort: "Low"
+        value: "High"
+
+      - id: "T04"
+        description: "Option 'repos flexible' vs 'repos strict'"
+        priority: "P1 - Should Have"
+        effort: "Low"
+        value: "Medium"
+
+      - id: "T05"
+        description: "Chronomètre pour exercices isométriques (planche, gainage)"
+        priority: "P1 - Should Have"
+        effort: "Low"
+        value: "Medium"
+
+      - id: "T06"
+        description: "Timer Tabata/HIIT pour cardio"
+        priority: "P3 - Won't Have (v1)"
+        effort: "Medium"
+        value: "Low"
+        notes: "Hors scope musculation pure"
+
+      - id: "T07"
+        description: "Historique temps de repos réels vs planifiés"
+        priority: "P2 - Nice to Have"
+        effort: "Low"
+        value: "Low"
+        phase: "Post-MVP"
+
+  category_5_visualisation_analytics:
+    title: "Visualisation & Analytics"
+    priority: "HAUTE - MVP"
+    ideas:
+      - id: "V01"
+        description: "Graphiques de progression (poids max, volume total, tonnage)"
+        priority: "P0 - Must Have"
+        effort: "High"
+        value: "Critical"
+        notes: "Core value - voir sa progression motive"
+
+      - id: "V02"
+        description: "PR (Personal Records) par exercice avec célébrations"
+        priority: "P1 - Should Have"
+        effort: "Medium"
+        value: "High"
+        notes: "Gamification légère, très motivant"
+
+      - id: "V03"
+        description: "Heatmap des groupes musculaires travaillés (semaine/mois)"
+        priority: "P2 - Nice to Have"
+        effort: "Medium"
+        value: "Medium"
+        notes: "Aide à équilibrer entraînement"
+
+      - id: "V04"
+        description: "Statistiques: séances complétées, streak, volume total"
+        priority: "P1 - Should Have"
+        effort: "Medium"
+        value: "High"
+        notes: "Metrics de motivation"
+
+      - id: "V05"
+        description: "Comparaison périodes (ce mois vs mois dernier)"
+        priority: "P2 - Nice to Have"
+        effort: "Medium"
+        value: "Medium"
+        phase: "Post-MVP"
+
+      - id: "V06"
+        description: "Export PDF de rapports de progression"
+        priority: "P3 - Won't Have (v1)"
+        effort: "High"
+        value: "Low"
+        notes: "Peu de demande initiale attendue"
+
+  category_6_experience_utilisateur:
+    title: "Expérience Utilisateur (UX)"
+    priority: "HAUTE - MVP"
+    ideas:
+      - id: "U01"
+        description: "Mode sombre/clair adapté à environnement salle"
+        priority: "P0 - Must Have"
+        effort: "Low"
+        value: "High"
+        notes: "Standard moderne attendu"
+
+      - id: "U02"
+        description: "Écran toujours allumé pendant séance active"
+        priority: "P0 - Must Have"
+        effort: "Low"
+        value: "High"
+        notes: "Évite frustration de réveiller téléphone constamment"
+
+      - id: "U03"
+        description: "Contrôles gestuels (swipe pour passer exercice)"
+        priority: "P2 - Nice to Have"
+        effort: "Medium"
+        value: "Medium"
+        notes: "Peut être ajouté itérativement"
+
+      - id: "U04"
+        description: "Affichage plein écran du timer"
+        priority: "P1 - Should Have"
+        effort: "Low"
+        value: "High"
+        notes: "Lisibilité à distance importante"
+
+      - id: "U05"
+        description: "Raccourcis rapides (widget home screen)"
+        priority: "P2 - Nice to Have"
+        effort: "High"
+        value: "Medium"
+        phase: "Post-MVP"
+        notes: "Nécessite dev natif iOS/Android"
+
+      - id: "U06"
+        description: "Sauvegarde auto en cas d'interruption (appel, batterie)"
+        priority: "P0 - Must Have"
+        effort: "Medium"
+        value: "Critical"
+        notes: "Évite perte de données frustrante"
+
+  category_7_social_phase2:
+    title: "Aspects Sociaux (Phase 2)"
+    priority: "PHASE 2"
+    ideas:
+      - id: "SO01"
+        description: "Système d'amis/followers"
+        priority: "P0 - Must Have (Phase 2)"
+        effort: "High"
+        value: "Critical"
+        phase: "Phase 2"
+
+      - id: "SO02"
+        description: "Partager séances complétées (avec stats anonymisées/publiques)"
+        priority: "P0 - Must Have (Phase 2)"
+        effort: "Medium"
+        value: "High"
+        phase: "Phase 2"
+
+      - id: "SO03"
+        description: "Feed d'activité des amis"
+        priority: "P1 - Should Have (Phase 2)"
+        effort: "High"
+        value: "High"
+        phase: "Phase 2"
+
+      - id: "SO04"
+        description: "Challenges entre amis (qui soulève le plus, volume total)"
+        priority: "P1 - Should Have (Phase 2)"
+        effort: "Very High"
+        value: "High"
+        phase: "Phase 2"
+
+      - id: "SO05"
+        description: "Commentaires/encouragements sur performances"
+        priority: "P2 - Nice to Have (Phase 2)"
+        effort: "Medium"
+        value: "Medium"
+        phase: "Phase 2"
+
+      - id: "SO06"
+        description: "Groupes d'entraînement (même programme)"
+        priority: "P2 - Nice to Have (Phase 2)"
+        effort: "Very High"
+        value: "Medium"
+        phase: "Phase 2"
+
+      - id: "SO07"
+        description: "Trouver partenaires d'entraînement à proximité"
+        priority: "P3 - Won't Have (v2)"
+        effort: "Very High"
+        value: "Low"
+        phase: "Future"
+        notes: "Complexité géolocalisation + modération"
+
+  category_8_gamification_phase2:
+    title: "Gamification (Phase 2)"
+    priority: "PHASE 2"
+    ideas:
+      - id: "G01"
+        description: "Système de badges (100 séances, nouveau PR, streak 30 jours)"
+        priority: "P0 - Must Have (Phase 2)"
+        effort: "Medium"
+        value: "High"
+        phase: "Phase 2"
+
+      - id: "G02"
+        description: "Niveaux/XP basés sur volume et constance"
+        priority: "P1 - Should Have (Phase 2)"
+        effort: "High"
+        value: "Medium"
+        phase: "Phase 2"
+
+      - id: "G03"
+        description: "Achievements déblocables"
+        priority: "P1 - Should Have (Phase 2)"
+        effort: "Medium"
+        value: "High"
+        phase: "Phase 2"
+
+      - id: "G04"
+        description: "Leaderboards par exercice/catégorie"
+        priority: "P2 - Nice to Have (Phase 2)"
+        effort: "High"
+        value: "Medium"
+        phase: "Phase 2"
+        notes: "Peut créer comparaisons malsaines"
+
+      - id: "G05"
+        description: "Défis hebdomadaires/mensuels"
+        priority: "P1 - Should Have (Phase 2)"
+        effort: "High"
+        value: "High"
+        phase: "Phase 2"
+
+      - id: "G06"
+        description: "Récompenses virtuelles pour motivation"
+        priority: "P2 - Nice to Have (Phase 2)"
+        effort: "Medium"
+        value: "Low"
+        phase: "Phase 2"
+
+      - id: "G07"
+        description: "Système de 'quêtes' (ex: Squat 100kg cette semaine)"
+        priority: "P2 - Nice to Have (Phase 2)"
+        effort: "High"
+        value: "Medium"
+        phase: "Phase 2"
+
+  category_9_premium_avancees:
+    title: "Fonctionnalités Premium/Avancées (Future)"
+    priority: "FUTURE"
+    ideas:
+      - id: "PR01"
+        description: "Sync cloud multi-devices"
+        priority: "P0 - Must Have (Phase 2)"
+        effort: "Very High"
+        value: "Critical"
+        phase: "Phase 2"
+        notes: "Requis pour social features"
+
+      - id: "PR02"
+        description: "Coach IA suggérant programmes personnalisés"
+        priority: "P2 - Nice to Have (Future)"
+        effort: "Very High"
+        value: "High"
+        phase: "Future"
+        notes: "Nécessite ML/AI expertise"
+
+      - id: "PR03"
+        description: "Analyse vidéo de forme (avec caméra)"
+        priority: "P3 - Won't Have"
+        effort: "Very High"
+        value: "Medium"
+        phase: "Future"
+        notes: "Très complexe techniquement, risques légaux"
+
+      - id: "PR04"
+        description: "Intégration wearables (Apple Watch, Garmin)"
+        priority: "P2 - Nice to Have (Future)"
+        effort: "Very High"
+        value: "Medium"
+        phase: "Future"
+
+      - id: "PR05"
+        description: "Plans nutrition intégrés"
+        priority: "P3 - Won't Have"
+        effort: "Very High"
+        value: "Low"
+        phase: "Future"
+        notes: "Hors scope, nécessite expertise nutrition"
+
+      - id: "PR06"
+        description: "Suivi poids corporel & mensurations"
+        priority: "P2 - Nice to Have (Phase 2)"
+        effort: "Medium"
+        value: "Medium"
+        phase: "Phase 2"
+
+      - id: "PR07"
+        description: "Calculateurs (1RM, calories brûlées, etc.)"
+        priority: "P2 - Nice to Have (Post-MVP)"
+        effort: "Low"
+        value: "Medium"
+        phase: "Post-MVP"
+
+brainstorming_techniques_used:
+  - name: "SCAMPER"
+    applications:
+      - "Substitute: Remplacer carnets papier/Excel par app mobile intuitive"
+      - "Combine: Timer + Tracking + Analytics en une expérience fluide"
+      - "Adapt: Concepts gaming (badges, XP, streaks) appliqués au fitness"
+      - "Modify: Interface adaptée au contexte (salle = grandes touches, lisibilité)"
+      - "Eliminate: Supprimer barrières (connexion obligatoire, compte requis)"
+      - "Reverse: Et si échecs étaient aussi trackés pour apprentissage?"
+
+  - name: "Divergent Thinking"
+    applications:
+      - "Exploration large des possibilités avant convergence"
+      - "Pas de jugement initial sur faisabilité"
+      - "Focus sur quantité d'idées générées"
+
+  - name: "User-Centric Design Thinking"
+    applications:
+      - "Empathie avec utilisateur en plein effort physique"
+      - "Penser expérience dans environnement bruyant/distrayant"
+      - "UX adaptée aux mains moites, fatigue"
+
+key_insights:
+  - insight: "Le timer de repos est une killer feature différenciante"
+    reasoning: |
+      Peu d'apps de tracking ont un timer vraiment bien intégré au workflow.
+      C'est un pain point réel (utiliser chrono du téléphone séparément).
+      Peut devenir signature de l'app si bien exécuté.
+
+  - insight: "Quick add et saisie rapide sont critiques pour l'adoption"
+    reasoning: |
+      Utilisateur est fatigué, transpirant, veut saisir vite entre séries.
+      Si saisie est lourde/lente, il abandonnera l'app.
+      UX doit être optimisée pour efficacité maximale.
+
+  - insight: "Offline-first est un avantage compétitif majeur"
+    reasoning: |
+      Salles de sport ont souvent mauvaise connexion (sous-sol, murs épais).
+      Concurrents nécessitant connexion perdent utilisateurs.
+      Permet aussi de se différencier sur privacy (données locales).
+
+  - insight: "Base de données d'exercices pré-chargée est essentielle"
+    reasoning: |
+      Friction à l'onboarding si utilisateur doit tout créer manuellement.
+      150+ exercices communs couvrent 95% des besoins.
+      Peut être enrichie progressivement par communauté (Phase 2).
+
+  - insight: "Visualisation de progression = core value proposition"
+    reasoning: |
+      Voir graphiques de progression est hautement motivant.
+      Différencie d'un simple carnet papier.
+      Justifie l'effort de saisir les données.
+
+  - insight: "Ne pas sur-complexifier le MVP avec features avancées"
+    reasoning: |
+      Tempo, RPE, supersets sont pour utilisateurs très avancés (< 5%).
+      Ajouter trop de complexité décourage utilisateurs standards.
+      Mieux vaut faire simple très bien que complet moyennement.
+
+  - insight: "Phase 2 social nécessite infrastructure backend significative"
+    reasoning: |
+      Sync, authentification, API, base de données relationnelle.
+      Coûts serveur et maintenance à anticiper.
+      Peut justifier modèle freemium (local gratuit, social payant).
+
+session_output:
+  total_ideas_generated: 70
+  categories_explored: 9
+  priority_p0_must_have: 15
+  priority_p1_should_have: 18
+  priority_p2_nice_to_have: 22
+  priority_p3_wont_have: 6
+  phase_1_mvp_ideas: 45
+  phase_2_ideas: 16
+  future_ideas: 9
+
+---
+
