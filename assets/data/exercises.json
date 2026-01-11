@@ -1,421 +1,513 @@
-{
-  "exercises": [
-    {
-      "id": "ex_001",
-      "name": "Barbell Bench Press",
-      "muscleGroup": "chest",
-      "category": "compound",
-      "equipmentType": "barbell",
-      "instructions": "Lie on bench, lower bar to chest, press up explosively"
-    },
-    {
-      "id": "ex_002",
-      "name": "Incline Dumbbell Press",
-      "muscleGroup": "chest",
-      "category": "compound",
-      "equipmentType": "dumbbell",
-      "instructions": "Set bench to 30-45°, press dumbbells from chest level"
-    },
-    {
-      "id": "ex_003",
-      "name": "Cable Chest Fly",
-      "muscleGroup": "chest",
-      "category": "isolation",
-      "equipmentType": "cable",
-      "instructions": "Stand centered, bring cables together in front of chest"
-    },
-    {
-      "id": "ex_004",
-      "name": "Push-ups",
-      "muscleGroup": "chest",
-      "category": "compound",
-      "equipmentType": "bodyweight",
-      "instructions": "Hands shoulder-width, lower chest to ground, push up"
-    },
-    {
-      "id": "ex_005",
-      "name": "Dumbbell Pullover",
-      "muscleGroup": "chest",
-      "category": "isolation",
-      "equipmentType": "dumbbell",
-      "instructions": "Lie perpendicular on bench, lower dumbbell behind head"
-    },
-    {
-      "id": "ex_006",
-      "name": "Barbell Row",
-      "muscleGroup": "back",
-      "category": "compound",
-      "equipmentType": "barbell",
-      "instructions": "Bent over 45°, pull bar to lower chest, squeeze shoulder blades"
-    },
-    {
-      "id": "ex_007",
-      "name": "Pull-ups",
-      "muscleGroup": "back",
-      "category": "compound",
-      "equipmentType": "bodyweight",
-      "instructions": "Hang from bar, pull chin over bar, lower controlled"
-    },
-    {
-      "id": "ex_008",
-      "name": "Lat Pulldown",
-      "muscleGroup": "back",
-      "category": "compound",
-      "equipmentType": "machine",
-      "instructions": "Pull bar to upper chest, lean back slightly, squeeze lats"
-    },
-    {
-      "id": "ex_009",
-      "name": "Seated Cable Row",
-      "muscleGroup": "back",
-      "category": "compound",
-      "equipmentType": "cable",
-      "instructions": "Pull handle to abdomen, keep back straight, squeeze at end"
-    },
-    {
-      "id": "ex_010",
-      "name": "Dumbbell Row",
-      "muscleGroup": "back",
-      "category": "compound",
-      "equipmentType": "dumbbell",
-      "instructions": "One hand on bench, pull dumbbell to hip, elbow close to body"
-    },
-    {
-      "id": "ex_011",
-      "name": "Face Pulls",
-      "muscleGroup": "back",
-      "category": "isolation",
-      "equipmentType": "cable",
-      "instructions": "Pull rope to face level, externally rotate shoulders"
-    },
-    {
-      "id": "ex_012",
-      "name": "Deadlift",
-      "muscleGroup": "back",
-      "category": "compound",
-      "equipmentType": "barbell",
-      "instructions": "Feet hip-width, grip bar, lift by extending hips and knees"
-    },
-    {
-      "id": "ex_013",
-      "name": "Barbell Overhead Press",
-      "muscleGroup": "shoulders",
-      "category": "compound",
-      "equipmentType": "barbell",
-      "instructions": "Press bar from shoulders to overhead, keep core tight"
-    },
-    {
-      "id": "ex_014",
-      "name": "Dumbbell Lateral Raise",
-      "muscleGroup": "shoulders",
-      "category": "isolation",
-      "equipmentType": "dumbbell",
-      "instructions": "Raise dumbbells to shoulder height, slight forward lean"
-    },
-    {
-      "id": "ex_015",
-      "name": "Dumbbell Shoulder Press",
-      "muscleGroup": "shoulders",
-      "category": "compound",
-      "equipmentType": "dumbbell",
-      "instructions": "Press dumbbells from shoulder level to overhead"
-    },
-    {
-      "id": "ex_016",
-      "name": "Cable Lateral Raise",
-      "muscleGroup": "shoulders",
-      "category": "isolation",
-      "equipmentType": "cable",
-      "instructions": "Stand sideways to cable, raise arm to shoulder height"
-    },
-    {
-      "id": "ex_017",
-      "name": "Front Raise",
-      "muscleGroup": "shoulders",
-      "category": "isolation",
-      "equipmentType": "dumbbell",
-      "instructions": "Raise dumbbells in front to shoulder height, palms down"
-    },
-    {
-      "id": "ex_018",
-      "name": "Reverse Pec Deck Fly",
-      "muscleGroup": "shoulders",
-      "category": "isolation",
-      "equipmentType": "machine",
-      "instructions": "Face machine, pull handles back, squeeze shoulder blades"
-    },
-    {
-      "id": "ex_019",
-      "name": "Barbell Curl",
-      "muscleGroup": "arms",
-      "category": "isolation",
-      "equipmentType": "barbell",
-      "instructions": "Curl bar from thighs to shoulders, keep elbows stationary"
-    },
-    {
-      "id": "ex_020",
-      "name": "Dumbbell Curl",
-      "muscleGroup": "arms",
-      "category": "isolation",
-      "equipmentType": "dumbbell",
-      "instructions": "Alternate or simultaneous curls, supinate at top"
-    },
-    {
-      "id": "ex_021",
-      "name": "Hammer Curl",
-      "muscleGroup": "arms",
-      "category": "isolation",
-      "equipmentType": "dumbbell",
-      "instructions": "Curl with neutral grip (palms facing each other)"
-    },
-    {
-      "id": "ex_022",
-      "name": "Tricep Pushdown",
-      "muscleGroup": "arms",
-      "category": "isolation",
-      "equipmentType": "cable",
-      "instructions": "Push cable down fully, keep elbows at sides, squeeze triceps"
-    },
-    {
-      "id": "ex_023",
-      "name": "Overhead Tricep Extension",
-      "muscleGroup": "arms",
-      "category": "isolation",
-      "equipmentType": "dumbbell",
-      "instructions": "Hold dumbbell overhead, lower behind head, extend arms"
-    },
-    {
-      "id": "ex_024",
-      "name": "Close-Grip Bench Press",
-      "muscleGroup": "arms",
-      "category": "compound",
-      "equipmentType": "barbell",
-      "instructions": "Narrow grip on bar, lower to chest, press up focusing on triceps"
-    },
-    {
-      "id": "ex_025",
-      "name": "Dips",
-      "muscleGroup": "arms",
-      "category": "compound",
-      "equipmentType": "bodyweight",
-      "instructions": "Lower body by bending elbows, push back up to start"
-    },
-    {
-      "id": "ex_026",
-      "name": "Preacher Curl",
-      "muscleGroup": "arms",
-      "category": "isolation",
-      "equipmentType": "barbell",
-      "instructions": "Arms on preacher pad, curl bar focusing on biceps contraction"
-    },
-    {
-      "id": "ex_027",
-      "name": "Barbell Squat",
-      "muscleGroup": "legs",
-      "category": "compound",
-      "equipmentType": "barbell",
-      "instructions": "Bar on back, squat to parallel, drive through heels"
-    },
-    {
-      "id": "ex_028",
-      "name": "Romanian Deadlift",
-      "muscleGroup": "legs",
-      "category": "compound",
-      "equipmentType": "barbell",
-      "instructions": "Hinge at hips, lower bar to shins, feel hamstring stretch"
-    },
-    {
-      "id": "ex_029",
-      "name": "Leg Press",
-      "muscleGroup": "legs",
-      "category": "compound",
-      "equipmentType": "machine",
-      "instructions": "Press platform away with feet shoulder-width"
-    },
-    {
-      "id": "ex_030",
-      "name": "Leg Extension",
-      "muscleGroup": "legs",
-      "category": "isolation",
-      "equipmentType": "machine",
-      "instructions": "Extend legs fully, squeeze quads at top, lower controlled"
-    },
-    {
-      "id": "ex_031",
-      "name": "Leg Curl",
-      "muscleGroup": "legs",
-      "category": "isolation",
-      "equipmentType": "machine",
-      "instructions": "Curl legs to glutes, squeeze hamstrings, lower controlled"
-    },
-    {
-      "id": "ex_032",
-      "name": "Bulgarian Split Squat",
-      "muscleGroup": "legs",
-      "category": "compound",
-      "equipmentType": "dumbbell",
-      "instructions": "Rear foot elevated, lower front leg to 90°, drive up"
-    },
-    {
-      "id": "ex_033",
-      "name": "Walking Lunges",
-      "muscleGroup": "legs",
-      "category": "compound",
-      "equipmentType": "dumbbell",
-      "instructions": "Step forward into lunge, alternate legs continuously"
-    },
-    {
-      "id": "ex_034",
-      "name": "Calf Raise",
-      "muscleGroup": "legs",
-      "category": "isolation",
-      "equipmentType": "machine",
-      "instructions": "Rise on toes as high as possible, lower with control"
-    },
-    {
-      "id": "ex_035",
-      "name": "Goblet Squat",
-      "muscleGroup": "legs",
-      "category": "compound",
-      "equipmentType": "dumbbell",
-      "instructions": "Hold dumbbell at chest, squat deep, keep chest up"
-    },
-    {
-      "id": "ex_036",
-      "name": "Hip Thrust",
-      "muscleGroup": "legs",
-      "category": "compound",
-      "equipmentType": "barbell",
-      "instructions": "Upper back on bench, bar on hips, thrust up squeezing glutes"
-    },
-    {
-      "id": "ex_037",
-      "name": "Plank",
-      "muscleGroup": "core",
-      "category": "isolation",
-      "equipmentType": "bodyweight",
-      "instructions": "Hold body straight from head to heels, engage core"
-    },
-    {
-      "id": "ex_038",
-      "name": "Crunches",
-      "muscleGroup": "core",
-      "category": "isolation",
-      "equipmentType": "bodyweight",
-      "instructions": "Lie on back, lift shoulders off ground, squeeze abs"
-    },
-    {
-      "id": "ex_039",
-      "name": "Russian Twist",
-      "muscleGroup": "core",
-      "category": "isolation",
-      "equipmentType": "bodyweight",
-      "instructions": "Seated, lean back, rotate torso side to side"
-    },
-    {
-      "id": "ex_040",
-      "name": "Hanging Leg Raise",
-      "muscleGroup": "core",
-      "category": "isolation",
-      "equipmentType": "bodyweight",
-      "instructions": "Hang from bar, raise legs to 90°, lower with control"
-    },
-    {
-      "id": "ex_041",
-      "name": "Cable Woodchop",
-      "muscleGroup": "core",
-      "category": "isolation",
-      "equipmentType": "cable",
-      "instructions": "Rotate torso pulling cable diagonally across body"
-    },
-    {
-      "id": "ex_042",
-      "name": "Ab Wheel Rollout",
-      "muscleGroup": "core",
-      "category": "isolation",
-      "equipmentType": "bodyweight",
-      "instructions": "Roll wheel forward maintaining straight body, pull back"
-    },
-    {
-      "id": "ex_043",
-      "name": "Mountain Climbers",
-      "muscleGroup": "core",
-      "category": "compound",
-      "equipmentType": "bodyweight",
-      "instructions": "Plank position, alternate bringing knees to chest rapidly"
-    },
-    {
-      "id": "ex_044",
-      "name": "Decline Sit-up",
-      "muscleGroup": "core",
-      "category": "isolation",
-      "equipmentType": "bodyweight",
-      "instructions": "On decline bench, sit up fully, lower with control"
-    },
-    {
-      "id": "ex_045",
-      "name": "Side Plank",
-      "muscleGroup": "core",
-      "category": "isolation",
-      "equipmentType": "bodyweight",
-      "instructions": "Hold body straight on side, hips elevated, core engaged"
-    },
-    {
-      "id": "ex_046",
-      "name": "Cable Crunch",
-      "muscleGroup": "core",
-      "category": "isolation",
-      "equipmentType": "cable",
-      "instructions": "Kneel with rope overhead, crunch down bringing elbows to knees"
-    },
-    {
-      "id": "ex_047",
-      "name": "Incline Barbell Press",
-      "muscleGroup": "chest",
-      "category": "compound",
-      "equipmentType": "barbell",
-      "instructions": "Bench at 30-45°, press bar from chest to lockout"
-    },
-    {
-      "id": "ex_048",
-      "name": "T-Bar Row",
-      "muscleGroup": "back",
-      "category": "compound",
-      "equipmentType": "barbell",
-      "instructions": "Bent over, pull bar to chest, keep back flat"
-    },
-    {
-      "id": "ex_049",
-      "name": "Arnold Press",
-      "muscleGroup": "shoulders",
-      "category": "compound",
-      "equipmentType": "dumbbell",
-      "instructions": "Start with palms facing in, rotate and press overhead"
-    },
-    {
-      "id": "ex_050",
-      "name": "Concentration Curl",
-      "muscleGroup": "arms",
-      "category": "isolation",
-      "equipmentType": "dumbbell",
-      "instructions": "Seated, elbow on inner thigh, curl focusing on peak contraction"
-    },
-    {
-      "id": "ex_051",
-      "name": "Front Squat",
-      "muscleGroup": "legs",
-      "category": "compound",
-      "equipmentType": "barbell",
-      "instructions": "Bar on front shoulders, squat keeping torso upright"
-    },
-    {
-      "id": "ex_052",
-      "name": "Bicycle Crunches",
-      "muscleGroup": "core",
-      "category": "isolation",
-      "equipmentType": "bodyweight",
-      "instructions": "Alternate elbow to opposite knee, extend other leg"
-    }
-  ]
-}
+[
+  {
+    "id": "ex-001",
+    "name": "Barbell Bench Press",
+    "muscleGroup": "chest",
+    "category": "compound",
+    "equipmentType": "barbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-002",
+    "name": "Incline Dumbbell Press",
+    "muscleGroup": "chest",
+    "category": "compound",
+    "equipmentType": "dumbbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-003",
+    "name": "Decline Bench Press",
+    "muscleGroup": "chest",
+    "category": "compound",
+    "equipmentType": "barbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-004",
+    "name": "Dumbbell Flyes",
+    "muscleGroup": "chest",
+    "category": "isolation",
+    "equipmentType": "dumbbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-005",
+    "name": "Cable Flyes",
+    "muscleGroup": "chest",
+    "category": "isolation",
+    "equipmentType": "cable",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-006",
+    "name": "Push-ups",
+    "muscleGroup": "chest",
+    "category": "compound",
+    "equipmentType": "bodyweight",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-007",
+    "name": "Deadlift",
+    "muscleGroup": "back",
+    "category": "compound",
+    "equipmentType": "barbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-008",
+    "name": "Barbell Rows",
+    "muscleGroup": "back",
+    "category": "compound",
+    "equipmentType": "barbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-009",
+    "name": "Pull-ups",
+    "muscleGroup": "back",
+    "category": "compound",
+    "equipmentType": "bodyweight",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-010",
+    "name": "Lat Pulldown",
+    "muscleGroup": "back",
+    "category": "compound",
+    "equipmentType": "machine",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-011",
+    "name": "Seated Cable Rows",
+    "muscleGroup": "back",
+    "category": "compound",
+    "equipmentType": "cable",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-012",
+    "name": "T-Bar Rows",
+    "muscleGroup": "back",
+    "category": "compound",
+    "equipmentType": "barbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-013",
+    "name": "Face Pulls",
+    "muscleGroup": "back",
+    "category": "isolation",
+    "equipmentType": "cable",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-014",
+    "name": "Overhead Press",
+    "muscleGroup": "shoulders",
+    "category": "compound",
+    "equipmentType": "barbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-015",
+    "name": "Dumbbell Shoulder Press",
+    "muscleGroup": "shoulders",
+    "category": "compound",
+    "equipmentType": "dumbbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-016",
+    "name": "Lateral Raises",
+    "muscleGroup": "shoulders",
+    "category": "isolation",
+    "equipmentType": "dumbbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-017",
+    "name": "Front Raises",
+    "muscleGroup": "shoulders",
+    "category": "isolation",
+    "equipmentType": "dumbbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-018",
+    "name": "Rear Delt Flyes",
+    "muscleGroup": "shoulders",
+    "category": "isolation",
+    "equipmentType": "dumbbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-019",
+    "name": "Arnold Press",
+    "muscleGroup": "shoulders",
+    "category": "compound",
+    "equipmentType": "dumbbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-020",
+    "name": "Barbell Curls",
+    "muscleGroup": "arms",
+    "category": "isolation",
+    "equipmentType": "barbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-021",
+    "name": "Hammer Curls",
+    "muscleGroup": "arms",
+    "category": "isolation",
+    "equipmentType": "dumbbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-022",
+    "name": "Triceps Dips",
+    "muscleGroup": "arms",
+    "category": "compound",
+    "equipmentType": "bodyweight",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-023",
+    "name": "Skull Crushers",
+    "muscleGroup": "arms",
+    "category": "isolation",
+    "equipmentType": "barbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-024",
+    "name": "Cable Triceps Pushdown",
+    "muscleGroup": "arms",
+    "category": "isolation",
+    "equipmentType": "cable",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-025",
+    "name": "Preacher Curls",
+    "muscleGroup": "arms",
+    "category": "isolation",
+    "equipmentType": "barbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-026",
+    "name": "Barbell Squat",
+    "muscleGroup": "legs",
+    "category": "compound",
+    "equipmentType": "barbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-027",
+    "name": "Romanian Deadlift",
+    "muscleGroup": "legs",
+    "category": "compound",
+    "equipmentType": "barbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-028",
+    "name": "Leg Press",
+    "muscleGroup": "legs",
+    "category": "compound",
+    "equipmentType": "machine",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-029",
+    "name": "Leg Curls",
+    "muscleGroup": "legs",
+    "category": "isolation",
+    "equipmentType": "machine",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-030",
+    "name": "Leg Extensions",
+    "muscleGroup": "legs",
+    "category": "isolation",
+    "equipmentType": "machine",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-031",
+    "name": "Lunges",
+    "muscleGroup": "legs",
+    "category": "compound",
+    "equipmentType": "dumbbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-032",
+    "name": "Calf Raises",
+    "muscleGroup": "legs",
+    "category": "isolation",
+    "equipmentType": "machine",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-033",
+    "name": "Bulgarian Split Squats",
+    "muscleGroup": "legs",
+    "category": "compound",
+    "equipmentType": "dumbbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-034",
+    "name": "Plank",
+    "muscleGroup": "core",
+    "category": "isolation",
+    "equipmentType": "bodyweight",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-035",
+    "name": "Russian Twists",
+    "muscleGroup": "core",
+    "category": "isolation",
+    "equipmentType": "bodyweight",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-036",
+    "name": "Cable Crunches",
+    "muscleGroup": "core",
+    "category": "isolation",
+    "equipmentType": "cable",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-037",
+    "name": "Hanging Leg Raises",
+    "muscleGroup": "core",
+    "category": "isolation",
+    "equipmentType": "bodyweight",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-038",
+    "name": "Incline Barbell Bench Press",
+    "muscleGroup": "chest",
+    "category": "compound",
+    "equipmentType": "barbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-039",
+    "name": "Pec Deck Machine",
+    "muscleGroup": "chest",
+    "category": "isolation",
+    "equipmentType": "machine",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-040",
+    "name": "Chin-ups",
+    "muscleGroup": "back",
+    "category": "compound",
+    "equipmentType": "bodyweight",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-041",
+    "name": "Dumbbell Rows",
+    "muscleGroup": "back",
+    "category": "compound",
+    "equipmentType": "dumbbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-042",
+    "name": "Cable Lateral Raises",
+    "muscleGroup": "shoulders",
+    "category": "isolation",
+    "equipmentType": "cable",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-043",
+    "name": "Upright Rows",
+    "muscleGroup": "shoulders",
+    "category": "compound",
+    "equipmentType": "barbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-044",
+    "name": "Concentration Curls",
+    "muscleGroup": "arms",
+    "category": "isolation",
+    "equipmentType": "dumbbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-045",
+    "name": "Overhead Triceps Extension",
+    "muscleGroup": "arms",
+    "category": "isolation",
+    "equipmentType": "dumbbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-046",
+    "name": "Front Squat",
+    "muscleGroup": "legs",
+    "category": "compound",
+    "equipmentType": "barbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-047",
+    "name": "Hack Squat",
+    "muscleGroup": "legs",
+    "category": "compound",
+    "equipmentType": "machine",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-048",
+    "name": "Walking Lunges",
+    "muscleGroup": "legs",
+    "category": "compound",
+    "equipmentType": "dumbbell",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-049",
+    "name": "Seated Calf Raises",
+    "muscleGroup": "legs",
+    "category": "isolation",
+    "equipmentType": "machine",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-050",
+    "name": "Ab Wheel Rollout",
+    "muscleGroup": "core",
+    "category": "compound",
+    "equipmentType": "bodyweight",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "ex-051",
+    "name": "Mountain Climbers",
+    "muscleGroup": "core",
+    "category": "compound",
+    "equipmentType": "bodyweight",
+    "isCustom": false,
+    "instructions": null,
+    "createdAt": "2026-01-01T00:00:00.000Z"
+  }
+]
 

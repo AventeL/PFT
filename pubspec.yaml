@@ -13,6 +13,7 @@ dependencies:
   # Core Dependencies
   flutter_bloc: ^8.1.0          # State management
   sqflite: ^2.3.0               # Local database
+  path: ^1.8.3                  # Path manipulation
   get_it: ^7.6.0                # Dependency injection
   uuid: ^4.0.0                  # UUID generation
   equatable: ^2.0.5             # Value equality
@@ -39,7 +40,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
-  mockito: ^5.4.0               # Testing
+  mocktail: ^1.0.0              # Testing mocks (no code generation needed)
   bloc_test: ^9.1.0             # BLoC testing
 
 flutter:
