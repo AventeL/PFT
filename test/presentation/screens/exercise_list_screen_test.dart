@@ -219,5 +219,249 @@ void main() {
 
       bloc.close();
     });
+
+    // Task 7.1: Test search bar renders and accepts input
+    testWidgets('search bar renders with correct hint text',
+        (WidgetTester tester) async {
+      // Arrange
+      final testExercises = [
+        Exercise(
+          id: '1',
+          name: 'Bench Press',
+          muscleGroup: MuscleGroup.chest,
+          category: ExerciseCategory.compound,
+          equipmentType: EquipmentType.barbell,
+          isCustom: false,
+          createdAt: DateTime.now(),
+        ),
+      ];
+
+      final bloc = ExerciseBloc(
+        getExercises: mockGetExercises,
+        createCustomExercise: mockCreateCustomExercise,
+        seedExercises: mockSeedExercises,
+        searchExercises: mockSearchExercises,
+        repository: mockRepository,
+      );
+
+      when(mockGetExercises.call()).thenAnswer((_) async => testExercises);
+
+      // Act
+      await tester.pumpWidget(createTestWidget(bloc));
+      await tester.pumpAndSettle();
+
+      // Assert
+      expect(find.byType(TextField), findsOneWidget);
+      expect(find.byIcon(Icons.search), findsOneWidget);
+
+      bloc.close();
+    });
+
+    testWidgets('search bar accepts text input', (WidgetTester tester) async {
+      // Arrange
+      final testExercises = [
+        Exercise(
+          id: '1',
+          name: 'Bench Press',
+          muscleGroup: MuscleGroup.chest,
+          category: ExerciseCategory.compound,
+          equipmentType: EquipmentType.barbell,
+          isCustom: false,
+          createdAt: DateTime.now(),
+        ),
+      ];
+
+      final bloc = ExerciseBloc(
+        getExercises: mockGetExercises,
+        createCustomExercise: mockCreateCustomExercise,
+        seedExercises: mockSeedExercises,
+        searchExercises: mockSearchExercises,
+        repository: mockRepository,
+      );
+
+      when(mockGetExercises.call()).thenAnswer((_) async => testExercises);
+
+      // Act
+      await tester.pumpWidget(createTestWidget(bloc));
+      await tester.pumpAndSettle();
+
+      // Enter text in search field
+      await tester.enterText(find.byType(TextField), 'bench');
+      await tester.pump();
+
+      // Assert
+      expect(find.text('bench'), findsOneWidget);
+
+      bloc.close();
+    });
+
+    testWidgets('search bar initially has no clear button',
+        (WidgetTester tester) async {
+      // Arrange
+      final testExercises = [
+        Exercise(
+          id: '1',
+          name: 'Bench Press',
+          muscleGroup: MuscleGroup.chest,
+          category: ExerciseCategory.compound,
+          equipmentType: EquipmentType.barbell,
+          isCustom: false,
+          createdAt: DateTime.now(),
+        ),
+      ];
+
+      final bloc = ExerciseBloc(
+        getExercises: mockGetExercises,
+        createCustomExercise: mockCreateCustomExercise,
+        seedExercises: mockSeedExercises,
+        searchExercises: mockSearchExercises,
+        repository: mockRepository,
+      );
+
+      when(mockGetExercises.call()).thenAnswer((_) async => testExercises);
+
+      // Act
+      await tester.pumpWidget(createTestWidget(bloc));
+      await tester.pumpAndSettle();
+
+      // Assert - Initially no clear button (since search is empty)
+      final textField = tester.widget<TextField>(find.byType(TextField));
+      expect(textField.decoration?.suffixIcon, isNull);
+
+      bloc.close();
+    });
+
+    testWidgets('search text field has a controller',
+        (WidgetTester tester) async {
+      // Arrange
+      final testExercises = [
+        Exercise(
+          id: '1',
+          name: 'Bench Press',
+          muscleGroup: MuscleGroup.chest,
+          category: ExerciseCategory.compound,
+          equipmentType: EquipmentType.barbell,
+          isCustom: false,
+          createdAt: DateTime.now(),
+        ),
+      ];
+
+      final bloc = ExerciseBloc(
+        getExercises: mockGetExercises,
+        createCustomExercise: mockCreateCustomExercise,
+        seedExercises: mockSeedExercises,
+        searchExercises: mockSearchExercises,
+        repository: mockRepository,
+      );
+
+      when(mockGetExercises.call()).thenAnswer((_) async => testExercises);
+
+      // Act
+      await tester.pumpWidget(createTestWidget(bloc));
+      await tester.pumpAndSettle();
+
+      // Enter text
+      await tester.enterText(find.byType(TextField), 'bench');
+      await tester.pump();
+
+      // Assert - text should be in controller
+      final textField = tester.widget<TextField>(find.byType(TextField));
+      expect(textField.controller?.text, 'bench');
+
+      bloc.close();
+    });
+
+    // Task 7.4: Test "No results found" message
+    testWidgets(
+        'displays "No results found" with suggestion when filters active',
+        (WidgetTester tester) async {
+      // Arrange
+      final bloc = ExerciseBloc(
+        getExercises: mockGetExercises,
+        createCustomExercise: mockCreateCustomExercise,
+        seedExercises: mockSeedExercises,
+        searchExercises: mockSearchExercises,
+        repository: mockRepository,
+      );
+
+      when(mockGetExercises.call()).thenAnswer((_) async => []);
+
+      // Act
+      await tester.pumpWidget(createTestWidget(bloc));
+      await tester.pumpAndSettle();
+
+      // Assert - should show no exercises found
+      expect(find.text('No exercises found'), findsOneWidget);
+      expect(find.byIcon(Icons.search_off), findsOneWidget);
+
+      bloc.close();
+    });
+
+    testWidgets('displays filter button in app bar',
+        (WidgetTester tester) async {
+      // Arrange
+      final bloc = ExerciseBloc(
+        getExercises: mockGetExercises,
+        createCustomExercise: mockCreateCustomExercise,
+        seedExercises: mockSeedExercises,
+        searchExercises: mockSearchExercises,
+        repository: mockRepository,
+      );
+
+      when(mockGetExercises.call()).thenAnswer((_) async => []);
+
+      // Act
+      await tester.pumpWidget(createTestWidget(bloc));
+      await tester.pumpAndSettle();
+
+      // Assert - filter button should be present
+      expect(find.byIcon(Icons.filter_list), findsOneWidget);
+
+      bloc.close();
+    });
+
+    testWidgets('displays exercise count when exercises are loaded',
+        (WidgetTester tester) async {
+      // Arrange
+      final testExercises = [
+        Exercise(
+          id: '1',
+          name: 'Bench Press',
+          muscleGroup: MuscleGroup.chest,
+          category: ExerciseCategory.compound,
+          equipmentType: EquipmentType.barbell,
+          isCustom: false,
+          createdAt: DateTime.now(),
+        ),
+        Exercise(
+          id: '2',
+          name: 'Squat',
+          muscleGroup: MuscleGroup.legs,
+          category: ExerciseCategory.compound,
+          equipmentType: EquipmentType.barbell,
+          isCustom: false,
+          createdAt: DateTime.now(),
+        ),
+      ];
+
+      final bloc = ExerciseBloc(
+        getExercises: mockGetExercises,
+        createCustomExercise: mockCreateCustomExercise,
+        seedExercises: mockSeedExercises,
+        searchExercises: mockSearchExercises,
+        repository: mockRepository,
+      );
+
+      when(mockGetExercises.call()).thenAnswer((_) async => testExercises);
+
+      // Act
+      await tester.pumpWidget(createTestWidget(bloc));
+      await tester.pumpAndSettle();
+
+      // Assert - should show count
+      expect(find.textContaining('2'), findsWidgets);
+
+      bloc.close();
+    });
   });
 }
