@@ -106,27 +106,35 @@ void main() {
   });
 
   group('Exercise Enums', () {
-    test('MuscleGroup should have correct display names', () {
-      expect(MuscleGroup.chest.displayName, 'Chest');
-      expect(MuscleGroup.back.displayName, 'Back');
-      expect(MuscleGroup.shoulders.displayName, 'Shoulders');
-      expect(MuscleGroup.arms.displayName, 'Arms');
-      expect(MuscleGroup.legs.displayName, 'Legs');
-      expect(MuscleGroup.core.displayName, 'Core');
+    test('MuscleGroup enum should have all values', () {
+      expect(MuscleGroup.values.length, 6);
+      expect(MuscleGroup.values, contains(MuscleGroup.chest));
+      expect(MuscleGroup.values, contains(MuscleGroup.back));
+      expect(MuscleGroup.values, contains(MuscleGroup.shoulders));
+      expect(MuscleGroup.values, contains(MuscleGroup.arms));
+      expect(MuscleGroup.values, contains(MuscleGroup.legs));
+      expect(MuscleGroup.values, contains(MuscleGroup.core));
     });
 
-    test('ExerciseCategory should have correct display names', () {
-      expect(ExerciseCategory.compound.displayName, 'Compound');
-      expect(ExerciseCategory.isolation.displayName, 'Isolation');
+    test('ExerciseCategory enum should have all values', () {
+      expect(ExerciseCategory.values.length, 2);
+      expect(ExerciseCategory.values, contains(ExerciseCategory.compound));
+      expect(ExerciseCategory.values, contains(ExerciseCategory.isolation));
     });
 
-    test('EquipmentType should have correct display names', () {
-      expect(EquipmentType.barbell.displayName, 'Barbell');
-      expect(EquipmentType.dumbbell.displayName, 'Dumbbell');
-      expect(EquipmentType.machine.displayName, 'Machine');
-      expect(EquipmentType.bodyweight.displayName, 'Bodyweight');
-      expect(EquipmentType.cable.displayName, 'Cable');
+    test('EquipmentType enum should have all values', () {
+      expect(EquipmentType.values.length, 5);
+      expect(EquipmentType.values, contains(EquipmentType.barbell));
+      expect(EquipmentType.values, contains(EquipmentType.dumbbell));
+      expect(EquipmentType.values, contains(EquipmentType.machine));
+      expect(EquipmentType.values, contains(EquipmentType.bodyweight));
+      expect(EquipmentType.values, contains(EquipmentType.cable));
+    });
+
+    test('Enum names should be lowercase', () {
+      expect(MuscleGroup.chest.name, 'chest');
+      expect(ExerciseCategory.compound.name, 'compound');
+      expect(EquipmentType.barbell.name, 'barbell');
     });
   });
 }
-

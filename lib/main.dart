@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'core/di/injection.dart';
+import 'core/theme/app_theme.dart';
+import 'l10n/app_localizations.dart';
 import 'presentation/blocs/exercise/exercise_bloc.dart';
 import 'presentation/blocs/exercise/exercise_event.dart';
 import 'presentation/screens/exercise_list/exercise_list_screen.dart';
@@ -22,13 +26,27 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'PFT - Performance Fitness Tracker',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('fr', ''),
+        Locale('en', ''),
+      ],
+      locale: const Locale('fr', ''),
+
+      // Utilisation du thème unifié
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
+
       home: BlocProvider(
-        create: (context) => sl<ExerciseBloc>()
-          ..add(const SeedExercisesIfNeeded()),
+        create: (context) =>
+            sl<ExerciseBloc>()..add(const SeedExercisesIfNeeded()),
         child: const ExerciseListScreen(),
       ),
     );

@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_text_styles.dart';
+import '../../../domain/entities/exercise_enums.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../blocs/exercise/exercise_bloc.dart';
 import '../../blocs/exercise/exercise_event.dart';
 import '../../blocs/exercise/exercise_state.dart';
+import '../../widgets/common/shimmer_widget.dart';
 import '../../widgets/exercise_list_item.dart';
-import '../../../domain/entities/exercise_enums.dart';
+
+/// Extension pour accéder facilement aux traductions via context
+extension _LocalizationExtension on BuildContext {
+  AppLocalizations get l10n => AppLocalizations.of(this)!;
+}
 
 /// Screen to display list of exercises grouped by muscle group
 class ExerciseListScreen extends StatefulWidget {
@@ -25,49 +35,72 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Exercises'),
-        elevation: 2,
-      ),
+      appBar: AppBar(title: Text(context.l10n.exercises), elevation: 2),
       body: BlocBuilder<ExerciseBloc, ExerciseState>(
         builder: (context, state) {
+          // Loading state - Show shimmer effect
           if (state is ExerciseLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const ExerciseListShimmer();
           }
 
+          // Error state
           if (state is ExerciseError) {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.error_outline, size: 64, color: Colors.red),
+                  Icon(Icons.error_outline, size: 64, color: AppColors.error),
                   const SizedBox(height: 16),
-                  Text(
-                    'Error loading exercises',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
+                  Text(context.l10n.errorLoadingData, style: AppTextStyles.h4),
                   const SizedBox(height: 8),
-                  Text(state.message),
+                  Text(
+                    state.message,
+                    style: AppTextStyles.body2.copyWith(
+                      color: AppColors.textSecondaryLight,
+                    ),
+                  ),
                   const SizedBox(height: 16),
-                  ElevatedButton(
+                  ElevatedButton.icon(
                     onPressed: () {
                       context.read<ExerciseBloc>().add(const LoadExercises());
                     },
-                    child: const Text('Retry'),
+                    icon: const Icon(Icons.refresh),
+                    label:
+                        Text(context.l10n.cancel), // TODO: ajouter retry à l10n
                   ),
                 ],
               ),
             );
           }
 
+          // Loaded state
           if (state is ExercisesLoaded) {
             final exercises = state.exercises;
 
+            // Empty state
             if (exercises.isEmpty) {
-              return const Center(
-                child: Text('No exercises found'),
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.fitness_center_outlined,
+                      size: 64,
+                      color: AppColors.textDisabledLight,
+                    ),
+                    const SizedBox(height: 16),
+                    Text(context.l10n.noExercisesFound,
+                        style: AppTextStyles.h4),
+                    const SizedBox(height: 8),
+                    Text(
+                      context.l10n.noExercisesFound,
+                      style: AppTextStyles.body2.copyWith(
+                        color: AppColors.textSecondaryLight,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               );
             }
 
@@ -89,14 +122,46 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Muscle group header
+                    // Muscle group header (traduit en français)
                     Padding(
                       padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-                      child: Text(
-                        muscleGroup.displayName,
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.bold,
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 4,
+                            height: 24,
+                            decoration: BoxDecoration(
+                              color: AppColors.getMuscleGroupColor(
+                                muscleGroup.name,
+                              ),
+                              borderRadius: BorderRadius.circular(2),
                             ),
+                          ),
+                          const SizedBox(width: 12),
+                          Text(
+                            _getMuscleGroupName(context, muscleGroup.name),
+                            style: AppTextStyles.h4,
+                          ),
+                          const SizedBox(width: 8),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 2,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColors.getMuscleGroupColor(
+                                muscleGroup.name,
+                              ).withValues(alpha: 0.2),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              '${groupExercises.length}',
+                              style: AppTextStyles.caption.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     // Exercises in this group
@@ -115,12 +180,34 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
             );
           }
 
-          return const Center(
-            child: Text('Press the button to load exercises'),
+          // Initial state
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.fitness_center, size: 64, color: AppColors.primary),
+                const SizedBox(height: 16),
+                Text(context.l10n.loading, style: AppTextStyles.h4),
+              ],
+            ),
           );
         },
       ),
     );
   }
-}
 
+  String _getMuscleGroupName(BuildContext context, String muscleGroup) {
+    final l10n = context.l10n;
+    return switch (muscleGroup.toLowerCase()) {
+      'chest' => l10n.muscleGroupChest,
+      'back' => l10n.muscleGroupBack,
+      'shoulders' => l10n.muscleGroupShoulders,
+      'legs' => l10n.muscleGroupLegs,
+      'arms' => l10n.muscleGroupArms,
+      'core' => l10n.muscleGroupCore,
+      'cardio' => l10n.muscleGroupCardio,
+      'fullbody' || 'full body' => l10n.muscleGroupFullBody,
+      _ => l10n.muscleGroupOther,
+    };
+  }
+}

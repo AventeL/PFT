@@ -13,20 +13,24 @@ Congratulations! Your project is now **100% ready** for story loop implementatio
 ### What's Been Setup
 
 **✅ Project Configuration**
+
 - `pubspec.yaml` with 17 packages configured
 - Flutter dependencies ready to install
 
 **✅ Documentation**
+
 - `ARCHITECTURE.md` - Complete architecture guide
 - `README.md` - Developer onboarding
 - All 29 stories documented in `docs/stories/`
 - Sprint planning in `docs/SPRINT-PLANNING.md`
 
 **✅ Data Assets**
+
 - `assets/data/exercises.json` - 52 exercises seeded
 - `assets/data/workout_templates.json` - 6 workout templates
 
 **✅ Folder Structure**
+
 - Complete Clean Architecture structure created
 - All BLoC folders ready
 - All screen/widget folders ready
@@ -34,6 +38,20 @@ Congratulations! Your project is now **100% ready** for story loop implementatio
 ---
 
 ## 🚀 NEXT STEPS - START SPRINT 1
+
+### ⚠️ IMPORTANT: Système de Design Créé!
+
+**AVANT de coder quoi que ce soit, lisez:** `docs/DESIGN-SYSTEM.md`
+
+Le système de design unifié a été créé avec :
+
+- ✅ Palette de couleurs complète (`AppColors`)
+- ✅ Typographie professionnelle (`AppTextStyles` avec Google Fonts)
+- ✅ Thème Light/Dark Material 3 (`AppTheme`)
+- ✅ Traductions françaises (`AppStrings`)
+- ✅ Shimmer effects pour loading states
+
+**Règle d'or:** Plus JAMAIS de `Colors.blue` ou `"Loading..."` hardcodé!
 
 ### Step 1: Install Dependencies
 
@@ -62,6 +80,7 @@ flutter analyze
 Open and read: `docs/stories/2.1.exercise-database.md`
 
 **Key info you need:**
+
 - Acceptance Criteria (5 items)
 - Tasks/Subtasks (detailed breakdown)
 - Technical Specifications (code examples)
@@ -74,6 +93,7 @@ Open and read: `docs/stories/2.1.exercise-database.md`
 ### For Each Story:
 
 #### 1. PREPARATION (5 min)
+
 ```bash
 # Read the story file
 code docs/stories/{story-number}.md
@@ -87,6 +107,7 @@ code docs/stories/{story-number}.md
 **Follow Clean Architecture layers:**
 
 **A. Domain Layer (Always First)**
+
 ```bash
 # 1. Create entities
 lib/domain/entities/
@@ -99,6 +120,7 @@ lib/domain/usecases/
 ```
 
 **B. Data Layer**
+
 ```bash
 # 4. Create models (DTOs)
 lib/data/models/
@@ -111,6 +133,7 @@ lib/data/repositories/
 ```
 
 **C. Presentation Layer**
+
 ```bash
 # 7. Create BLoC (events, states, bloc)
 lib/presentation/blocs/
@@ -123,6 +146,7 @@ lib/presentation/widgets/
 ```
 
 #### 3. TESTING (Required - >80% coverage)
+
 ```bash
 # Create test files
 test/domain/usecases/
@@ -137,12 +161,14 @@ flutter test --coverage
 ```
 
 #### 4. VALIDATION
+
 - [ ] All acceptance criteria met
 - [ ] Tests passing (>80% coverage)
 - [ ] No critical errors (`flutter analyze`)
 - [ ] Performance KPI validated (if applicable)
 
 #### 5. COMPLETION
+
 - [ ] Update story status in file
 - [ ] Commit code with story number
 - [ ] Move to next story
@@ -156,22 +182,26 @@ flutter test --coverage
 **Files to create:**
 
 **Domain:**
+
 - `lib/domain/entities/exercise.dart`
 - `lib/domain/entities/exercise_enums.dart`
 - `lib/domain/repositories/exercise_repository.dart`
 - `lib/domain/usecases/exercise/get_exercises.dart`
 
 **Data:**
+
 - `lib/data/models/exercise_model.dart`
 - `lib/data/datasources/local/exercise_local_datasource.dart`
 - `lib/data/repositories/exercise_repository_impl.dart`
 
 **Core:**
+
 - `lib/core/services/database_helper.dart`
 - `lib/core/services/seed_service.dart`
 - `lib/core/di/injection.dart`
 
 **Presentation:**
+
 - `lib/presentation/blocs/exercise/exercise_bloc.dart`
 - `lib/presentation/blocs/exercise/exercise_event.dart`
 - `lib/presentation/blocs/exercise/exercise_state.dart`
@@ -179,6 +209,7 @@ flutter test --coverage
 - `lib/presentation/widgets/exercise/exercise_card.dart`
 
 **Acceptance Criteria:**
+
 1. ✅ 50+ exercises load on first launch
 2. ✅ Categorized by muscle group
 3. ✅ Tagged (compound/isolation, equipment)
@@ -188,12 +219,14 @@ flutter test --coverage
 ### Story 2.2: Search/Filter (1 day)
 
 **Extends Story 2.1 - Add:**
+
 - Search functionality in ExerciseBloc
 - Filter UI widgets
 - Debouncing (500ms)
 - Performance < 50ms
 
 **Acceptance Criteria:**
+
 1. ✅ Search by name
 2. ✅ Filter by muscle group
 3. ✅ Filter by category (compound/isolation)
@@ -207,16 +240,17 @@ flutter test --coverage
 
 ### Performance KPIs (Must Track)
 
-| Story | KPI | Target | How to Measure |
-|-------|-----|--------|----------------|
-| 2.1 | Exercise list load | < 100ms | DevTools Timeline |
-| 2.2 | Search/filter | < 50ms | DevTools Timeline |
-| 3.2 | Set entry time | < 10s | Stopwatch (CRITICAL!) |
-| 0 | Animations | 60 FPS | DevTools Performance |
+| Story | KPI                | Target  | How to Measure        |
+|-------|--------------------|---------|-----------------------|
+| 2.1   | Exercise list load | < 100ms | DevTools Timeline     |
+| 2.2   | Search/filter      | < 50ms  | DevTools Timeline     |
+| 3.2   | Set entry time     | < 10s   | Stopwatch (CRITICAL!) |
+| 0     | Animations         | 60 FPS  | DevTools Performance  |
 
 ### Code Quality Checklist
 
 **Every commit must have:**
+
 - [ ] Clean Architecture respected (no layer violations)
 - [ ] BLoC for state management (no setState in business logic)
 - [ ] Repository pattern for data access
@@ -228,17 +262,20 @@ flutter test --coverage
 ### Testing Standards
 
 **Unit Tests (Required):**
+
 - ✅ All use cases
 - ✅ All BLoCs (use bloc_test)
 - ✅ Repository implementations
 - ✅ Models (toJson/fromJson)
 
 **Widget Tests (For complex widgets):**
+
 - ✅ Screens with user interaction
 - ✅ Forms with validation
 - ✅ Custom complex widgets
 
 **Integration Tests (Sprint end):**
+
 - ✅ Core user flows
 - ✅ End-to-end scenarios
 
@@ -249,6 +286,7 @@ flutter test --coverage
 **Duration:** 10 days (Days 1-10)
 
 **Day 1-3: Setup**
+
 - Install dependencies
 - Create DatabaseHelper
 - Create 7 SQLite tables
@@ -256,6 +294,7 @@ flutter test --coverage
 - Seed service
 
 **Day 4-5: Story 2.1**
+
 - Exercise entity + models
 - Repository + datasource
 - ExerciseBloc
@@ -263,12 +302,14 @@ flutter test --coverage
 - Tests
 
 **Day 6-7: Story 2.2**
+
 - Search/filter logic
 - Filter UI
 - Debouncing
 - Tests
 
 **Day 8-10: Testing & Polish**
+
 - Integration tests
 - Performance validation
 - Bug fixes
@@ -279,15 +320,18 @@ flutter test --coverage
 ## 📚 KEY DOCUMENTATION REFERENCES
 
 ### Read These First
+
 1. **[ARCHITECTURE.md](../ARCHITECTURE.md)** - Your bible for structure
 2. **[Story 2.1](../docs/stories/2.1.exercise-database.md)** - First story details
 3. **[Sprint Planning](../docs/SPRINT-PLANNING.md)** - Full sprint breakdown
 
 ### Reference During Development
+
 - **[PRD](../.bmad-core/outputs/pft-mvp-prd.md)** - Product requirements
 - **[Implementation Readiness](../docs/IMPLEMENTATION-READINESS-REPORT.md)** - Setup validation
 
 ### When Stuck
+
 - Check story's "Dev Notes" section
 - Check story's "Technical Specifications" section
 - Review similar implemented stories (after Sprint 1)
@@ -299,24 +343,28 @@ flutter test --coverage
 Before you start coding:
 
 **Environment:**
+
 - [ ] Flutter SDK installed and working
 - [ ] Editor setup (VS Code or Android Studio)
 - [ ] Emulator/device ready for testing
 - [ ] Git initialized (optional but recommended)
 
 **Project:**
+
 - [ ] `flutter pub get` completed successfully
 - [ ] No errors when opening project
 - [ ] Can see folder structure in IDE
 - [ ] Can see assets in IDE
 
 **Documentation:**
+
 - [ ] Read ARCHITECTURE.md (at least skimmed)
 - [ ] Read Sprint 1 plan
 - [ ] Read Story 2.1 in detail
 - [ ] Understand Clean Architecture layers
 
 **Mindset:**
+
 - [ ] Ready to follow story instructions precisely
 - [ ] Ready to write tests (not optional!)
 - [ ] Ready to measure performance KPIs
@@ -371,6 +419,7 @@ code docs/stories/2.1.exercise-database.md
 ## 🎯 Success Looks Like...
 
 **After Sprint 1 (Day 10):**
+
 - ✅ Exercise database working
 - ✅ 52 exercises loaded
 - ✅ Search/filter functional
@@ -380,18 +429,21 @@ code docs/stories/2.1.exercise-database.md
 - ✅ Ready for Sprint 2 (Workouts)
 
 **After Sprint 2 (Day 20):**
+
 - ✅ Can create workouts
 - ✅ Can start workout session
 - ✅ Can track sets
 - ✅ Set entry < 10s validated 🔥
 
 **After Sprint 3 (Day 30):**
+
 - ✅ Timer auto-starts
 - ✅ Notifications working
 - ✅ History tracking
 - ✅ Killer feature complete! 🚀
 
 **After Sprint 4 (Day 42):**
+
 - ✅ MVP COMPLETE
 - ✅ Alpha ready
 - ✅ All 29 stories done
