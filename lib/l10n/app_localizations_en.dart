@@ -183,6 +183,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get createWorkout => 'Create workout';
 
   @override
+  String get newWorkout => 'New workout';
+
+  @override
   String get editWorkout => 'Edit workout';
 
   @override
@@ -195,16 +198,43 @@ class AppLocalizationsEn extends AppLocalizations {
   String get workoutName => 'Workout name';
 
   @override
+  String get workoutNameHint => 'E.g: Push Day, Legs, etc.';
+
+  @override
+  String get workoutNameRequired => 'Workout name is required';
+
+  @override
+  String get workoutNameTooLong => 'Name cannot exceed 100 characters';
+
+  @override
   String get workoutDescription => 'Description';
 
   @override
+  String get description => 'Description';
+
+  @override
+  String get descriptionHint => 'Describe your workout (optional)';
+
+  @override
   String get workoutNotes => 'Notes';
+
+  @override
+  String get notes => 'Notes';
+
+  @override
+  String get notesHint => 'Add notes (optional)';
 
   @override
   String get workoutTemplates => 'Workout templates';
 
   @override
   String get noWorkoutsFound => 'No workouts found';
+
+  @override
+  String get workoutNeedsExercises => 'Add at least one exercise';
+
+  @override
+  String get addExercise => 'Add exercise';
 
   @override
   String get addExercises => 'Add exercises';
@@ -214,6 +244,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reorderExercises => 'Reorder exercises';
+
+  @override
+  String get noExercisesAdded => 'No exercises added';
+
+  @override
+  String get tapToAddExercises => 'Tap + to add exercises';
+
+  @override
+  String get unknownExercise => 'Unknown exercise';
 
   @override
   String get startWorkout => 'Start workout';

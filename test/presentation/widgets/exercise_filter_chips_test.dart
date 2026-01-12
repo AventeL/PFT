@@ -198,9 +198,9 @@ void main() {
       await tester.pumpWidget(
         createTestWidget(
           ExerciseFilterChips(
-            selectedMuscleGroups: {MuscleGroup.chest, MuscleGroup.back},
-            selectedCategories: {ExerciseCategory.compound},
-            selectedEquipmentTypes: {EquipmentType.barbell},
+            selectedMuscleGroups: const {MuscleGroup.chest, MuscleGroup.back},
+            selectedCategories: const {ExerciseCategory.compound},
+            selectedEquipmentTypes: const {EquipmentType.barbell},
             onMuscleGroupsChanged: (_) {},
             onCategoriesChanged: (_) {},
             onEquipmentTypesChanged: (_) {},

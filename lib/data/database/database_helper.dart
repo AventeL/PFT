@@ -23,9 +23,62 @@ class DatabaseHelper {
 
     return await openDatabase(
       path,
-      version: 1,
+      version: 2,
       onCreate: _createDB,
+      onUpgrade: _upgradeDB,
     );
+  }
+
+  /// Upgrade database when version changes
+  Future<void> _upgradeDB(Database db, int oldVersion, int newVersion) async {
+    if (oldVersion < 2) {
+      // Add workouts tables for version 2
+      await _createWorkoutTables(db);
+    }
+  }
+
+  /// Create workout-related tables
+  Future<void> _createWorkoutTables(Database db) async {
+    // Workouts table
+    await db.execute('''
+      CREATE TABLE workouts (
+        id TEXT PRIMARY KEY,
+        name TEXT NOT NULL,
+        description TEXT,
+        notes TEXT,
+        created_at INTEGER NOT NULL,
+        updated_at INTEGER NOT NULL,
+        is_template INTEGER DEFAULT 0
+      )
+    ''');
+
+    // Create indexes for workouts
+    await db.execute('''
+      CREATE INDEX idx_is_template ON workouts(is_template)
+    ''');
+
+    await db.execute('''
+      CREATE INDEX idx_created_at ON workouts(created_at)
+    ''');
+
+    // Workout exercises join table
+    await db.execute('''
+      CREATE TABLE workout_exercises (
+        id TEXT PRIMARY KEY,
+        workout_id TEXT NOT NULL,
+        exercise_id TEXT NOT NULL,
+        order_index INTEGER NOT NULL,
+        target_sets INTEGER,
+        rest_time INTEGER,
+        FOREIGN KEY (workout_id) REFERENCES workouts(id) ON DELETE CASCADE,
+        FOREIGN KEY (exercise_id) REFERENCES exercises(id)
+      )
+    ''');
+
+    // Create index for workout_exercises
+    await db.execute('''
+      CREATE INDEX idx_workout_id ON workout_exercises(workout_id)
+    ''');
   }
 
   /// Create database tables
@@ -53,7 +106,10 @@ class DatabaseHelper {
       CREATE INDEX idx_is_custom ON exercises(is_custom)
     ''');
 
-    // TODO: Add more tables for workouts, sessions, etc. in future stories
+    // Create workout tables
+    await _createWorkoutTables(db);
+
+    // TODO: Add more tables for sessions, history, etc. in future stories
   }
 
   /// Close database connection
@@ -62,4 +118,3 @@ class DatabaseHelper {
     await db.close();
   }
 }
-

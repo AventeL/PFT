@@ -446,6 +446,12 @@ abstract class AppLocalizations {
   /// **'Créer un entraînement'**
   String get createWorkout;
 
+  /// No description provided for @newWorkout.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouvel entraînement'**
+  String get newWorkout;
+
   /// No description provided for @editWorkout.
   ///
   /// In fr, this message translates to:
@@ -470,17 +476,59 @@ abstract class AppLocalizations {
   /// **'Nom de l\'entraînement'**
   String get workoutName;
 
+  /// No description provided for @workoutNameHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ex: Push Day, Jambes, etc.'**
+  String get workoutNameHint;
+
+  /// No description provided for @workoutNameRequired.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le nom de l\'entraînement est requis'**
+  String get workoutNameRequired;
+
+  /// No description provided for @workoutNameTooLong.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le nom ne peut pas dépasser 100 caractères'**
+  String get workoutNameTooLong;
+
   /// No description provided for @workoutDescription.
   ///
   /// In fr, this message translates to:
   /// **'Description'**
   String get workoutDescription;
 
+  /// No description provided for @description.
+  ///
+  /// In fr, this message translates to:
+  /// **'Description'**
+  String get description;
+
+  /// No description provided for @descriptionHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Décrivez votre entraînement (optionnel)'**
+  String get descriptionHint;
+
   /// No description provided for @workoutNotes.
   ///
   /// In fr, this message translates to:
   /// **'Notes'**
   String get workoutNotes;
+
+  /// No description provided for @notes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Notes'**
+  String get notes;
+
+  /// No description provided for @notesHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajoutez des notes (optionnel)'**
+  String get notesHint;
 
   /// No description provided for @workoutTemplates.
   ///
@@ -493,6 +541,18 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Aucun entraînement trouvé'**
   String get noWorkoutsFound;
+
+  /// No description provided for @workoutNeedsExercises.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajoutez au moins un exercice'**
+  String get workoutNeedsExercises;
+
+  /// No description provided for @addExercise.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un exercice'**
+  String get addExercise;
 
   /// No description provided for @addExercises.
   ///
@@ -511,6 +571,24 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Réorganiser les exercices'**
   String get reorderExercises;
+
+  /// No description provided for @noExercisesAdded.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun exercice ajouté'**
+  String get noExercisesAdded;
+
+  /// No description provided for @tapToAddExercises.
+  ///
+  /// In fr, this message translates to:
+  /// **'Appuyez sur + pour ajouter des exercices'**
+  String get tapToAddExercises;
+
+  /// No description provided for @unknownExercise.
+  ///
+  /// In fr, this message translates to:
+  /// **'Exercice inconnu'**
+  String get unknownExercise;
 
   /// No description provided for @startWorkout.
   ///

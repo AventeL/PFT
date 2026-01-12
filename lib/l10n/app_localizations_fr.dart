@@ -183,6 +183,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get createWorkout => 'Créer un entraînement';
 
   @override
+  String get newWorkout => 'Nouvel entraînement';
+
+  @override
   String get editWorkout => 'Modifier l\'entraînement';
 
   @override
@@ -195,16 +198,43 @@ class AppLocalizationsFr extends AppLocalizations {
   String get workoutName => 'Nom de l\'entraînement';
 
   @override
+  String get workoutNameHint => 'Ex: Push Day, Jambes, etc.';
+
+  @override
+  String get workoutNameRequired => 'Le nom de l\'entraînement est requis';
+
+  @override
+  String get workoutNameTooLong => 'Le nom ne peut pas dépasser 100 caractères';
+
+  @override
   String get workoutDescription => 'Description';
 
   @override
+  String get description => 'Description';
+
+  @override
+  String get descriptionHint => 'Décrivez votre entraînement (optionnel)';
+
+  @override
   String get workoutNotes => 'Notes';
+
+  @override
+  String get notes => 'Notes';
+
+  @override
+  String get notesHint => 'Ajoutez des notes (optionnel)';
 
   @override
   String get workoutTemplates => 'Modèles d\'entraînement';
 
   @override
   String get noWorkoutsFound => 'Aucun entraînement trouvé';
+
+  @override
+  String get workoutNeedsExercises => 'Ajoutez au moins un exercice';
+
+  @override
+  String get addExercise => 'Ajouter un exercice';
 
   @override
   String get addExercises => 'Ajouter des exercices';
@@ -214,6 +244,15 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get reorderExercises => 'Réorganiser les exercices';
+
+  @override
+  String get noExercisesAdded => 'Aucun exercice ajouté';
+
+  @override
+  String get tapToAddExercises => 'Appuyez sur + pour ajouter des exercices';
+
+  @override
+  String get unknownExercise => 'Exercice inconnu';
 
   @override
   String get startWorkout => 'Démarrer l\'entraînement';
