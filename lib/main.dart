@@ -5,6 +5,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/di/injection.dart';
 import 'core/theme/app_theme.dart';
 import 'l10n/app_localizations.dart';
+import 'presentation/blocs/active_workout/active_workout_bloc.dart';
+import 'presentation/blocs/active_workout/active_workout_event.dart';
 import 'presentation/blocs/exercise/exercise_bloc.dart';
 import 'presentation/blocs/exercise/exercise_event.dart';
 import 'presentation/blocs/workout/workout_bloc.dart';
@@ -49,12 +51,17 @@ class MyApp extends StatelessWidget {
       home: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) =>
+            create: (_) =>
                 sl<ExerciseBloc>()..add(const SeedExercisesIfNeeded()),
           ),
           BlocProvider(
-            create: (context) =>
-                sl<WorkoutBloc>()..add(const SeedTemplatesIfNeeded()),
+            create: (_) => sl<WorkoutBloc>()
+              ..add(const LoadWorkouts())
+              ..add(const SeedTemplatesIfNeeded()),
+          ),
+          BlocProvider(
+            create: (_) =>
+                sl<ActiveWorkoutBloc>()..add(const LoadActiveSession()),
           ),
         ],
         child: const HomeScreen(),

@@ -12,20 +12,12 @@ class SeedTemplates {
   });
 
   Future<void> call() async {
-    // Check if templates already exist
-    final existingWorkouts = await repository.getWorkouts();
-    final existingTemplates =
-        existingWorkouts.where((w) => w.isTemplate).toList();
-
-    if (existingTemplates.isNotEmpty) {
-      // Templates already seeded, skip
-      return;
-    }
-
     // Load templates from asset
     final templates = await seedService.loadTemplatesFromAsset();
 
     // Save all templates to database
+    // The repository uses ConflictAlgorithm.replace, so missing templates will be added
+    // and existing ones will be updated.
     for (final template in templates) {
       await repository.createWorkout(template);
     }

@@ -23,7 +23,7 @@ class DatabaseHelper {
 
     return await openDatabase(
       path,
-      version: 2,
+      version: 7,
       onCreate: _createDB,
       onUpgrade: _upgradeDB,
     );
@@ -34,6 +34,43 @@ class DatabaseHelper {
     if (oldVersion < 2) {
       // Add workouts tables for version 2
       await _createWorkoutTables(db);
+    }
+    if (oldVersion < 3) {
+      // Add workout session tables for version 3
+      await _createSessionTables(db);
+    }
+    if (oldVersion < 4) {
+      // Clean up old active sessions for version 4
+      // Mark all existing sessions without proper status as abandoned
+      await db.execute('''
+        UPDATE workout_sessions 
+        SET status = 'abandoned', end_time = start_time
+        WHERE end_time IS NULL AND status = 'active'
+      ''');
+    }
+    if (oldVersion < 5) {
+      // Ensure session tables exist for version 5
+      // This is a safety measure in case version 4 migration was incomplete
+      await _createSessionTables(db);
+    }
+    if (oldVersion < 6) {
+      // Migration from version 5 to 6: Ensure 'order_index' exists in performed_exercises
+      // If table already existed without it, we add it.
+      try {
+        await db.execute(
+            'ALTER TABLE performed_exercises ADD COLUMN order_index INTEGER NOT NULL DEFAULT 0');
+      } catch (e) {
+        // Column might already exist, ignore error
+      }
+    }
+    if (oldVersion < 7) {
+      // Migration from version 6 to 7: Ensure 'rest_time' exists in performed_exercises
+      try {
+        await db.execute(
+            'ALTER TABLE performed_exercises ADD COLUMN rest_time INTEGER');
+      } catch (e) {
+        // ignore
+      }
     }
   }
 
@@ -81,6 +118,63 @@ class DatabaseHelper {
     ''');
   }
 
+  /// Create workout session related tables
+  Future<void> _createSessionTables(Database db) async {
+    // Workout sessions table
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS workout_sessions (
+        id TEXT PRIMARY KEY,
+        workout_id TEXT,
+        start_time INTEGER NOT NULL,
+        end_time INTEGER,
+        status TEXT NOT NULL,
+        notes TEXT,
+        FOREIGN KEY (workout_id) REFERENCES workouts(id) ON DELETE SET NULL
+      )
+    ''');
+
+    // Performed exercises table
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS performed_exercises (
+        id TEXT PRIMARY KEY,
+        session_id TEXT NOT NULL,
+        exercise_id TEXT NOT NULL,
+        order_index INTEGER NOT NULL,
+        rest_time INTEGER,
+        notes TEXT,
+        FOREIGN KEY (session_id) REFERENCES workout_sessions(id) ON DELETE CASCADE,
+        FOREIGN KEY (exercise_id) REFERENCES exercises(id)
+      )
+    ''');
+
+    // Set records table
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS set_records (
+        id TEXT PRIMARY KEY,
+        performed_exercise_id TEXT NOT NULL,
+        set_number INTEGER NOT NULL,
+        weight REAL,
+        reps INTEGER,
+        rpe REAL,
+        is_completed INTEGER DEFAULT 1,
+        FOREIGN KEY (performed_exercise_id) REFERENCES performed_exercises(id) ON DELETE CASCADE
+      )
+    ''');
+
+    // Create indexes for sessions
+    await db.execute('''
+      CREATE INDEX IF NOT EXISTS idx_session_start_time ON workout_sessions(start_time)
+    ''');
+
+    await db.execute('''
+      CREATE INDEX IF NOT EXISTS idx_performed_exercise_session ON performed_exercises(session_id)
+    ''');
+
+    await db.execute('''
+      CREATE INDEX IF NOT EXISTS idx_set_performed_exercise ON set_records(performed_exercise_id)
+    ''');
+  }
+
   /// Create database tables
   Future<void> _createDB(Database db, int version) async {
     // Exercises table
@@ -109,7 +203,8 @@ class DatabaseHelper {
     // Create workout tables
     await _createWorkoutTables(db);
 
-    // TODO: Add more tables for sessions, history, etc. in future stories
+    // Create workout session tables
+    await _createSessionTables(db);
   }
 
   /// Close database connection

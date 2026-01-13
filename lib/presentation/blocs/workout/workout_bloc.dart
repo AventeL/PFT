@@ -48,9 +48,7 @@ class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
     try {
       emit(const WorkoutLoading());
       final workouts = await getWorkouts();
-      // Filter out templates, only show user workouts
-      final userWorkouts = workouts.where((w) => !w.isTemplate).toList();
-      emit(WorkoutsLoaded(userWorkouts));
+      emit(WorkoutsLoaded(workouts));
     } catch (e) {
       emit(WorkoutError('Failed to load workouts: ${e.toString()}'));
     }
@@ -158,10 +156,13 @@ class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
     try {
       await seedTemplates();
       emit(const TemplatesSeeded());
+      // Reload everything to ensure UI is updated with new templates
+      add(const LoadWorkouts());
     } catch (e) {
       // Don't emit error for seeding failure, just log it
       // The app can still work without templates
       debugPrint('Warning: Failed to seed templates: ${e.toString()}');
+      add(const LoadWorkouts());
     }
   }
 }

@@ -4,8 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../blocs/active_workout/active_workout_bloc.dart';
+import '../../blocs/active_workout/active_workout_state.dart';
 import '../../blocs/exercise/exercise_bloc.dart';
 import '../../blocs/workout/workout_bloc.dart';
+import '../../widgets/active_session_banner.dart';
+import '../../widgets/workout_selection_sheet.dart';
+import '../active_workout/active_workout_screen.dart';
 import '../exercise_list/exercise_list_screen.dart';
 import '../templates/template_list_screen.dart';
 import '../workout_list/workout_list_screen.dart';
@@ -27,125 +32,176 @@ class HomeScreen extends StatelessWidget {
         elevation: 2,
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SizedBox(height: 24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // Active session banner
+            const ActiveSessionBanner(),
 
-              // Welcome message
-              Text(
-                'Bienvenue dans PFT',
-                style: AppTextStyles.h2,
-                textAlign: TextAlign.center,
-              ),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SizedBox(height: 24),
 
-              const SizedBox(height: 8),
+                  // Welcome message
+                  Text(
+                    'Bienvenue dans PFT',
+                    style: AppTextStyles.h2,
+                    textAlign: TextAlign.center,
+                  ),
 
-              Text(
-                'Votre assistant d\'entraînement personnel',
-                style: AppTextStyles.body1.copyWith(
-                  color: AppColors.textSecondaryLight,
-                ),
-                textAlign: TextAlign.center,
-              ),
+                  const SizedBox(height: 8),
 
-              const SizedBox(height: 48),
-
-              // Workouts card
-              _buildFeatureCard(
-                context,
-                icon: Icons.fitness_center,
-                title: context.l10n.myWorkouts,
-                description: 'Créez et gérez vos entraînements',
-                color: AppColors.primary,
-                onTap: () {
-                  // Capture blocs before navigation
-                  final workoutBloc = context.read<WorkoutBloc>();
-                  final exerciseBloc = context.read<ExerciseBloc>();
-
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => MultiBlocProvider(
-                        providers: [
-                          BlocProvider.value(value: workoutBloc),
-                          BlocProvider.value(value: exerciseBloc),
-                        ],
-                        child: const WorkoutListScreen(),
-                      ),
+                  Text(
+                    'Votre assistant d\'entraînement personnel',
+                    style: AppTextStyles.body1.copyWith(
+                      color: AppColors.textSecondaryLight,
                     ),
-                  );
-                },
-              ),
+                    textAlign: TextAlign.center,
+                  ),
 
-              const SizedBox(height: 16),
+                  const SizedBox(height: 48),
 
-              // Templates card
-              _buildFeatureCard(
-                context,
-                icon: Icons.library_books,
-                title: 'Templates',
-                description: 'Utilisez des programmes pré-configurés',
-                color: Colors.purple,
-                onTap: () {
-                  // Capture blocs before navigation
-                  final workoutBloc = context.read<WorkoutBloc>();
-                  final exerciseBloc = context.read<ExerciseBloc>();
+                  // Workouts card
+                  _buildFeatureCard(
+                    context,
+                    icon: Icons.fitness_center,
+                    title: context.l10n.myWorkouts,
+                    description: 'Créez et gérez vos entraînements',
+                    color: AppColors.primary,
+                    onTap: () {
+                      // Capture blocs before navigation
+                      final workoutBloc = context.read<WorkoutBloc>();
+                      final exerciseBloc = context.read<ExerciseBloc>();
 
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => MultiBlocProvider(
-                        providers: [
-                          BlocProvider.value(value: workoutBloc),
-                          BlocProvider.value(value: exerciseBloc),
-                        ],
-                        child: const TemplateListScreen(),
-                      ),
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => MultiBlocProvider(
+                            providers: [
+                              BlocProvider.value(value: workoutBloc),
+                              BlocProvider.value(value: exerciseBloc),
+                            ],
+                            child: const WorkoutListScreen(),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  // Templates card
+                  _buildFeatureCard(
+                    context,
+                    icon: Icons.library_books,
+                    title: 'Templates',
+                    description: 'Utilisez des programmes pré-configurés',
+                    color: Colors.purple,
+                    onTap: () {
+                      // Capture blocs before navigation
+                      final workoutBloc = context.read<WorkoutBloc>();
+                      final exerciseBloc = context.read<ExerciseBloc>();
+
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => MultiBlocProvider(
+                            providers: [
+                              BlocProvider.value(value: workoutBloc),
+                              BlocProvider.value(value: exerciseBloc),
+                            ],
+                            child: const TemplateListScreen(),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  // Exercises card
+                  _buildFeatureCard(
+                    context,
+                    icon: Icons.list,
+                    title: context.l10n.exercises,
+                    description: 'Explorez la bibliothèque d\'exercices',
+                    color: AppColors.secondary,
+                    onTap: () {
+                      // Capture bloc before navigation
+                      final exerciseBloc = context.read<ExerciseBloc>();
+
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => BlocProvider.value(
+                            value: exerciseBloc,
+                            child: const ExerciseListScreen(),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+
+                  const SizedBox(height: 48),
+
+                  // Version info
+                  Text(
+                    'Version 1.0.0',
+                    style: AppTextStyles.caption.copyWith(
+                      color: AppColors.textDisabledLight,
                     ),
-                  );
-                },
+                    textAlign: TextAlign.center,
+                  ),
+
+                  const SizedBox(height: 16),
+                ],
               ),
-
-              const SizedBox(height: 16),
-
-              // Exercises card
-              _buildFeatureCard(
-                context,
-                icon: Icons.list,
-                title: context.l10n.exercises,
-                description: 'Explorez la bibliothèque d\'exercices',
-                color: AppColors.secondary,
-                onTap: () {
-                  // Capture bloc before navigation
-                  final exerciseBloc = context.read<ExerciseBloc>();
-
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => BlocProvider.value(
-                        value: exerciseBloc,
-                        child: const ExerciseListScreen(),
-                      ),
-                    ),
-                  );
-                },
-              ),
-
-              const SizedBox(height: 48),
-
-              // Version info
-              Text(
-                'Version 1.0.0',
-                style: AppTextStyles.caption.copyWith(
-                  color: AppColors.textDisabledLight,
-                ),
-                textAlign: TextAlign.center,
-              ),
-
-              const SizedBox(height: 16),
-            ],
-          ),
+            ),
+          ],
         ),
+      ),
+      floatingActionButton: BlocBuilder<ActiveWorkoutBloc, ActiveWorkoutState>(
+        builder: (context, state) {
+          final isActive = state is ActiveWorkoutActive;
+
+          return FloatingActionButton.extended(
+            onPressed: () {
+              if (isActive) {
+                // Navigate to active workout
+                final activeWorkoutBloc = context.read<ActiveWorkoutBloc>();
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => BlocProvider.value(
+                      value: activeWorkoutBloc,
+                      child: const ActiveWorkoutScreen(),
+                    ),
+                  ),
+                );
+              } else {
+                // Show workout selection with BLoCs
+                final workoutBloc = context.read<WorkoutBloc>();
+                final activeWorkoutBloc = context.read<ActiveWorkoutBloc>();
+
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  builder: (context) => MultiBlocProvider(
+                    providers: [
+                      BlocProvider.value(value: workoutBloc),
+                      BlocProvider.value(value: activeWorkoutBloc),
+                    ],
+                    child: const WorkoutSelectionSheet(),
+                  ),
+                );
+              }
+            },
+            label: Text(isActive
+                ? 'Reprendre l\'entraînement'
+                : context.l10n.startWorkout),
+            icon: Icon(isActive ? Icons.play_circle_filled : Icons.play_arrow),
+          );
+        },
       ),
     );
   }

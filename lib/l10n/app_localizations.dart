@@ -1285,6 +1285,36 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Paramètres enregistrés'**
   String get successSettingsSaved;
+
+  /// No description provided for @selectWorkout.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sélectionner une séance'**
+  String get selectWorkout;
+
+  /// No description provided for @quickStart.
+  ///
+  /// In fr, this message translates to:
+  /// **'Démarrage rapide'**
+  String get quickStart;
+
+  /// No description provided for @activeWorkout.
+  ///
+  /// In fr, this message translates to:
+  /// **'Séance en cours'**
+  String get activeWorkout;
+
+  /// No description provided for @elapsedTime.
+  ///
+  /// In fr, this message translates to:
+  /// **'Temps écoulé'**
+  String get elapsedTime;
+
+  /// No description provided for @sessionStartedAt.
+  ///
+  /// In fr, this message translates to:
+  /// **'Démarrée à {time}'**
+  String sessionStartedAt(String time);
 }
 
 class _AppLocalizationsDelegate

@@ -612,4 +612,21 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get successSettingsSaved => 'Paramètres enregistrés';
+
+  @override
+  String get selectWorkout => 'Sélectionner une séance';
+
+  @override
+  String get quickStart => 'Démarrage rapide';
+
+  @override
+  String get activeWorkout => 'Séance en cours';
+
+  @override
+  String get elapsedTime => 'Temps écoulé';
+
+  @override
+  String sessionStartedAt(String time) {
+    return 'Démarrée à $time';
+  }
 }

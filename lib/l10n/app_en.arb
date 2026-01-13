@@ -242,6 +242,18 @@
   "successWorkoutCompleted": "Workout completed successfully!",
   "successExerciseAdded": "Exercise added",
   "successExerciseDeleted": "Exercise deleted",
-  "successSettingsSaved": "Settings saved"
-}
+  "successSettingsSaved": "Settings saved",
 
+  "selectWorkout": "Select a workout",
+  "quickStart": "Quick Start",
+  "activeWorkout": "Active Workout",
+  "elapsedTime": "Elapsed Time",
+  "sessionStartedAt": "Started at {time}",
+  "@sessionStartedAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  }
+}

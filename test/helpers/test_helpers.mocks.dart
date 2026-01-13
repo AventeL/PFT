@@ -3,17 +3,24 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i8;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:pft/core/services/exercise_seed_service.dart' as _i4;
+import 'package:pft/core/services/exercise_seed_service.dart' as _i5;
 import 'package:pft/domain/entities/exercise.dart' as _i2;
-import 'package:pft/domain/entities/exercise_enums.dart' as _i10;
-import 'package:pft/domain/repositories/exercise_repository.dart' as _i3;
-import 'package:pft/domain/usecases/create_custom_exercise.dart' as _i7;
-import 'package:pft/domain/usecases/get_exercises.dart' as _i6;
-import 'package:pft/domain/usecases/search_exercises.dart' as _i9;
-import 'package:pft/domain/usecases/seed_exercises.dart' as _i8;
+import 'package:pft/domain/entities/exercise_enums.dart' as _i13;
+import 'package:pft/domain/entities/workout.dart' as _i3;
+import 'package:pft/domain/repositories/exercise_repository.dart' as _i4;
+import 'package:pft/domain/repositories/workout_repository.dart' as _i6;
+import 'package:pft/domain/usecases/create_custom_exercise.dart' as _i10;
+import 'package:pft/domain/usecases/create_workout.dart' as _i15;
+import 'package:pft/domain/usecases/delete_workout.dart' as _i17;
+import 'package:pft/domain/usecases/get_exercises.dart' as _i9;
+import 'package:pft/domain/usecases/get_workouts.dart' as _i14;
+import 'package:pft/domain/usecases/search_exercises.dart' as _i12;
+import 'package:pft/domain/usecases/seed_exercises.dart' as _i11;
+import 'package:pft/domain/usecases/update_workout.dart' as _i16;
+import 'package:uuid/uuid.dart' as _i7;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -39,9 +46,8 @@ class _FakeExercise_0 extends _i1.SmartFake implements _i2.Exercise {
         );
 }
 
-class _FakeExerciseRepository_1 extends _i1.SmartFake
-    implements _i3.ExerciseRepository {
-  _FakeExerciseRepository_1(
+class _FakeWorkout_1 extends _i1.SmartFake implements _i3.Workout {
+  _FakeWorkout_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -50,9 +56,41 @@ class _FakeExerciseRepository_1 extends _i1.SmartFake
         );
 }
 
-class _FakeExerciseSeedService_2 extends _i1.SmartFake
-    implements _i4.ExerciseSeedService {
-  _FakeExerciseSeedService_2(
+class _FakeExerciseRepository_2 extends _i1.SmartFake
+    implements _i4.ExerciseRepository {
+  _FakeExerciseRepository_2(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeExerciseSeedService_3 extends _i1.SmartFake
+    implements _i5.ExerciseSeedService {
+  _FakeExerciseSeedService_3(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeWorkoutRepository_4 extends _i1.SmartFake
+    implements _i6.WorkoutRepository {
+  _FakeWorkoutRepository_4(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeUuid_5 extends _i1.SmartFake implements _i7.Uuid {
+  _FakeUuid_5(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -65,123 +103,201 @@ class _FakeExerciseSeedService_2 extends _i1.SmartFake
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockExerciseRepository extends _i1.Mock
-    implements _i3.ExerciseRepository {
+    implements _i4.ExerciseRepository {
   MockExerciseRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<List<_i2.Exercise>> getExercises() => (super.noSuchMethod(
+  _i8.Future<List<_i2.Exercise>> getExercises() => (super.noSuchMethod(
         Invocation.method(
           #getExercises,
           [],
         ),
-        returnValue: _i5.Future<List<_i2.Exercise>>.value(<_i2.Exercise>[]),
-      ) as _i5.Future<List<_i2.Exercise>>);
+        returnValue: _i8.Future<List<_i2.Exercise>>.value(<_i2.Exercise>[]),
+      ) as _i8.Future<List<_i2.Exercise>>);
 
   @override
-  _i5.Future<_i2.Exercise?> getExerciseById(String? id) => (super.noSuchMethod(
+  _i8.Future<_i2.Exercise?> getExerciseById(String? id) => (super.noSuchMethod(
         Invocation.method(
           #getExerciseById,
           [id],
         ),
-        returnValue: _i5.Future<_i2.Exercise?>.value(),
-      ) as _i5.Future<_i2.Exercise?>);
+        returnValue: _i8.Future<_i2.Exercise?>.value(),
+      ) as _i8.Future<_i2.Exercise?>);
 
   @override
-  _i5.Future<_i2.Exercise> createExercise(_i2.Exercise? exercise) =>
+  _i8.Future<_i2.Exercise> createExercise(_i2.Exercise? exercise) =>
       (super.noSuchMethod(
         Invocation.method(
           #createExercise,
           [exercise],
         ),
-        returnValue: _i5.Future<_i2.Exercise>.value(_FakeExercise_0(
+        returnValue: _i8.Future<_i2.Exercise>.value(_FakeExercise_0(
           this,
           Invocation.method(
             #createExercise,
             [exercise],
           ),
         )),
-      ) as _i5.Future<_i2.Exercise>);
+      ) as _i8.Future<_i2.Exercise>);
 
   @override
-  _i5.Future<void> deleteExercise(String? id) => (super.noSuchMethod(
+  _i8.Future<void> deleteExercise(String? id) => (super.noSuchMethod(
         Invocation.method(
           #deleteExercise,
           [id],
         ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+        returnValue: _i8.Future<void>.value(),
+        returnValueForMissingStub: _i8.Future<void>.value(),
+      ) as _i8.Future<void>);
 
   @override
-  _i5.Future<void> seedExercises(List<_i2.Exercise>? exercises) =>
+  _i8.Future<void> seedExercises(List<_i2.Exercise>? exercises) =>
       (super.noSuchMethod(
         Invocation.method(
           #seedExercises,
           [exercises],
         ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+        returnValue: _i8.Future<void>.value(),
+        returnValueForMissingStub: _i8.Future<void>.value(),
+      ) as _i8.Future<void>);
 
   @override
-  _i5.Future<bool> hasExercises() => (super.noSuchMethod(
+  _i8.Future<bool> hasExercises() => (super.noSuchMethod(
         Invocation.method(
           #hasExercises,
           [],
         ),
-        returnValue: _i5.Future<bool>.value(false),
-      ) as _i5.Future<bool>);
+        returnValue: _i8.Future<bool>.value(false),
+      ) as _i8.Future<bool>);
+}
+
+/// A class which mocks [WorkoutRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockWorkoutRepository extends _i1.Mock implements _i6.WorkoutRepository {
+  MockWorkoutRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i8.Future<List<_i3.Workout>> getWorkouts() => (super.noSuchMethod(
+        Invocation.method(
+          #getWorkouts,
+          [],
+        ),
+        returnValue: _i8.Future<List<_i3.Workout>>.value(<_i3.Workout>[]),
+      ) as _i8.Future<List<_i3.Workout>>);
+
+  @override
+  _i8.Future<_i3.Workout?> getWorkoutById(String? id) => (super.noSuchMethod(
+        Invocation.method(
+          #getWorkoutById,
+          [id],
+        ),
+        returnValue: _i8.Future<_i3.Workout?>.value(),
+      ) as _i8.Future<_i3.Workout?>);
+
+  @override
+  _i8.Future<_i3.Workout> createWorkout(_i3.Workout? workout) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #createWorkout,
+          [workout],
+        ),
+        returnValue: _i8.Future<_i3.Workout>.value(_FakeWorkout_1(
+          this,
+          Invocation.method(
+            #createWorkout,
+            [workout],
+          ),
+        )),
+      ) as _i8.Future<_i3.Workout>);
+
+  @override
+  _i8.Future<_i3.Workout> updateWorkout(_i3.Workout? workout) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateWorkout,
+          [workout],
+        ),
+        returnValue: _i8.Future<_i3.Workout>.value(_FakeWorkout_1(
+          this,
+          Invocation.method(
+            #updateWorkout,
+            [workout],
+          ),
+        )),
+      ) as _i8.Future<_i3.Workout>);
+
+  @override
+  _i8.Future<void> deleteWorkout(String? id) => (super.noSuchMethod(
+        Invocation.method(
+          #deleteWorkout,
+          [id],
+        ),
+        returnValue: _i8.Future<void>.value(),
+        returnValueForMissingStub: _i8.Future<void>.value(),
+      ) as _i8.Future<void>);
+
+  @override
+  _i8.Future<List<_i3.Workout>> getTemplates() => (super.noSuchMethod(
+        Invocation.method(
+          #getTemplates,
+          [],
+        ),
+        returnValue: _i8.Future<List<_i3.Workout>>.value(<_i3.Workout>[]),
+      ) as _i8.Future<List<_i3.Workout>>);
 }
 
 /// A class which mocks [GetExercises].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetExercises extends _i1.Mock implements _i6.GetExercises {
+class MockGetExercises extends _i1.Mock implements _i9.GetExercises {
   MockGetExercises() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.ExerciseRepository get repository => (super.noSuchMethod(
+  _i4.ExerciseRepository get repository => (super.noSuchMethod(
         Invocation.getter(#repository),
-        returnValue: _FakeExerciseRepository_1(
+        returnValue: _FakeExerciseRepository_2(
           this,
           Invocation.getter(#repository),
         ),
-      ) as _i3.ExerciseRepository);
+      ) as _i4.ExerciseRepository);
 
   @override
-  _i5.Future<List<_i2.Exercise>> call() => (super.noSuchMethod(
+  _i8.Future<List<_i2.Exercise>> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i5.Future<List<_i2.Exercise>>.value(<_i2.Exercise>[]),
-      ) as _i5.Future<List<_i2.Exercise>>);
+        returnValue: _i8.Future<List<_i2.Exercise>>.value(<_i2.Exercise>[]),
+      ) as _i8.Future<List<_i2.Exercise>>);
 }
 
 /// A class which mocks [CreateCustomExercise].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCreateCustomExercise extends _i1.Mock
-    implements _i7.CreateCustomExercise {
+    implements _i10.CreateCustomExercise {
   MockCreateCustomExercise() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.ExerciseRepository get repository => (super.noSuchMethod(
+  _i4.ExerciseRepository get repository => (super.noSuchMethod(
         Invocation.getter(#repository),
-        returnValue: _FakeExerciseRepository_1(
+        returnValue: _FakeExerciseRepository_2(
           this,
           Invocation.getter(#repository),
         ),
-      ) as _i3.ExerciseRepository);
+      ) as _i4.ExerciseRepository);
 
   @override
-  _i5.Future<_i2.Exercise> call({
+  _i8.Future<_i2.Exercise> call({
     required String? name,
     required String? muscleGroup,
     required String? category,
@@ -200,7 +316,7 @@ class MockCreateCustomExercise extends _i1.Mock
             #instructions: instructions,
           },
         ),
-        returnValue: _i5.Future<_i2.Exercise>.value(_FakeExercise_0(
+        returnValue: _i8.Future<_i2.Exercise>.value(_FakeExercise_0(
           this,
           Invocation.method(
             #call,
@@ -214,60 +330,60 @@ class MockCreateCustomExercise extends _i1.Mock
             },
           ),
         )),
-      ) as _i5.Future<_i2.Exercise>);
+      ) as _i8.Future<_i2.Exercise>);
 }
 
 /// A class which mocks [SeedExercises].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSeedExercises extends _i1.Mock implements _i8.SeedExercises {
+class MockSeedExercises extends _i1.Mock implements _i11.SeedExercises {
   MockSeedExercises() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.ExerciseSeedService get seedService => (super.noSuchMethod(
+  _i5.ExerciseSeedService get seedService => (super.noSuchMethod(
         Invocation.getter(#seedService),
-        returnValue: _FakeExerciseSeedService_2(
+        returnValue: _FakeExerciseSeedService_3(
           this,
           Invocation.getter(#seedService),
         ),
-      ) as _i4.ExerciseSeedService);
+      ) as _i5.ExerciseSeedService);
 
   @override
-  _i5.Future<void> call() => (super.noSuchMethod(
+  _i8.Future<void> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
+        returnValue: _i8.Future<void>.value(),
+        returnValueForMissingStub: _i8.Future<void>.value(),
+      ) as _i8.Future<void>);
 }
 
 /// A class which mocks [SearchExercises].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSearchExercises extends _i1.Mock implements _i9.SearchExercises {
+class MockSearchExercises extends _i1.Mock implements _i12.SearchExercises {
   MockSearchExercises() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.ExerciseRepository get repository => (super.noSuchMethod(
+  _i4.ExerciseRepository get repository => (super.noSuchMethod(
         Invocation.getter(#repository),
-        returnValue: _FakeExerciseRepository_1(
+        returnValue: _FakeExerciseRepository_2(
           this,
           Invocation.getter(#repository),
         ),
-      ) as _i3.ExerciseRepository);
+      ) as _i4.ExerciseRepository);
 
   @override
-  _i5.Future<List<_i2.Exercise>> call({
+  _i8.Future<List<_i2.Exercise>> call({
     String? query,
-    Set<_i10.MuscleGroup>? muscleGroups,
-    Set<_i10.ExerciseCategory>? categories,
-    Set<_i10.EquipmentType>? equipmentTypes,
+    Set<_i13.MuscleGroup>? muscleGroups,
+    Set<_i13.ExerciseCategory>? categories,
+    Set<_i13.EquipmentType>? equipmentTypes,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -280,6 +396,136 @@ class MockSearchExercises extends _i1.Mock implements _i9.SearchExercises {
             #equipmentTypes: equipmentTypes,
           },
         ),
-        returnValue: _i5.Future<List<_i2.Exercise>>.value(<_i2.Exercise>[]),
-      ) as _i5.Future<List<_i2.Exercise>>);
+        returnValue: _i8.Future<List<_i2.Exercise>>.value(<_i2.Exercise>[]),
+      ) as _i8.Future<List<_i2.Exercise>>);
+}
+
+/// A class which mocks [GetWorkouts].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetWorkouts extends _i1.Mock implements _i14.GetWorkouts {
+  MockGetWorkouts() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i6.WorkoutRepository get repository => (super.noSuchMethod(
+        Invocation.getter(#repository),
+        returnValue: _FakeWorkoutRepository_4(
+          this,
+          Invocation.getter(#repository),
+        ),
+      ) as _i6.WorkoutRepository);
+
+  @override
+  _i8.Future<List<_i3.Workout>> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i8.Future<List<_i3.Workout>>.value(<_i3.Workout>[]),
+      ) as _i8.Future<List<_i3.Workout>>);
+}
+
+/// A class which mocks [CreateWorkout].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCreateWorkout extends _i1.Mock implements _i15.CreateWorkout {
+  MockCreateWorkout() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i6.WorkoutRepository get repository => (super.noSuchMethod(
+        Invocation.getter(#repository),
+        returnValue: _FakeWorkoutRepository_4(
+          this,
+          Invocation.getter(#repository),
+        ),
+      ) as _i6.WorkoutRepository);
+
+  @override
+  _i7.Uuid get uuid => (super.noSuchMethod(
+        Invocation.getter(#uuid),
+        returnValue: _FakeUuid_5(
+          this,
+          Invocation.getter(#uuid),
+        ),
+      ) as _i7.Uuid);
+
+  @override
+  _i8.Future<_i3.Workout> call(_i3.Workout? workout) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [workout],
+        ),
+        returnValue: _i8.Future<_i3.Workout>.value(_FakeWorkout_1(
+          this,
+          Invocation.method(
+            #call,
+            [workout],
+          ),
+        )),
+      ) as _i8.Future<_i3.Workout>);
+}
+
+/// A class which mocks [UpdateWorkout].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockUpdateWorkout extends _i1.Mock implements _i16.UpdateWorkout {
+  MockUpdateWorkout() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i6.WorkoutRepository get repository => (super.noSuchMethod(
+        Invocation.getter(#repository),
+        returnValue: _FakeWorkoutRepository_4(
+          this,
+          Invocation.getter(#repository),
+        ),
+      ) as _i6.WorkoutRepository);
+
+  @override
+  _i8.Future<_i3.Workout> call(_i3.Workout? workout) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [workout],
+        ),
+        returnValue: _i8.Future<_i3.Workout>.value(_FakeWorkout_1(
+          this,
+          Invocation.method(
+            #call,
+            [workout],
+          ),
+        )),
+      ) as _i8.Future<_i3.Workout>);
+}
+
+/// A class which mocks [DeleteWorkout].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockDeleteWorkout extends _i1.Mock implements _i17.DeleteWorkout {
+  MockDeleteWorkout() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i6.WorkoutRepository get repository => (super.noSuchMethod(
+        Invocation.getter(#repository),
+        returnValue: _FakeWorkoutRepository_4(
+          this,
+          Invocation.getter(#repository),
+        ),
+      ) as _i6.WorkoutRepository);
+
+  @override
+  _i8.Future<void> call(String? workoutId) => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [workoutId],
+        ),
+        returnValue: _i8.Future<void>.value(),
+        returnValueForMissingStub: _i8.Future<void>.value(),
+      ) as _i8.Future<void>);
 }

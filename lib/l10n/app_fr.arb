@@ -242,6 +242,18 @@
   "successWorkoutCompleted": "Entraînement terminé avec succès !",
   "successExerciseAdded": "Exercice ajouté",
   "successExerciseDeleted": "Exercice supprimé",
-  "successSettingsSaved": "Paramètres enregistrés"
-}
+  "successSettingsSaved": "Paramètres enregistrés",
 
+  "selectWorkout": "Sélectionner une séance",
+  "quickStart": "Démarrage rapide",
+  "activeWorkout": "Séance en cours",
+  "elapsedTime": "Temps écoulé",
+  "sessionStartedAt": "Démarrée à {time}",
+  "@sessionStartedAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  }
+}

@@ -5,13 +5,18 @@ import '../../data/datasources/local/exercise_local_datasource.dart';
 import '../../data/datasources/local/exercise_local_datasource_impl.dart';
 import '../../data/datasources/local/workout_local_datasource.dart';
 import '../../data/datasources/local/workout_local_datasource_impl.dart';
+import '../../data/datasources/local/workout_session_local_datasource.dart';
+import '../../data/datasources/local/workout_session_local_datasource_impl.dart';
 import '../../data/repositories/exercise_repository_impl.dart';
 import '../../data/repositories/workout_repository_impl.dart';
+import '../../data/repositories/workout_session_repository_impl.dart';
 import '../../domain/repositories/exercise_repository.dart';
 import '../../domain/repositories/workout_repository.dart';
+import '../../domain/repositories/workout_session_repository.dart';
 import '../../domain/usecases/create_custom_exercise.dart';
 import '../../domain/usecases/create_workout.dart';
 import '../../domain/usecases/delete_workout.dart';
+import '../../domain/usecases/get_active_session.dart';
 import '../../domain/usecases/get_exercise_by_id.dart';
 import '../../domain/usecases/get_exercises.dart';
 import '../../domain/usecases/get_workout_templates.dart';
@@ -20,7 +25,11 @@ import '../../domain/usecases/import_template.dart';
 import '../../domain/usecases/search_exercises.dart';
 import '../../domain/usecases/seed_exercises.dart';
 import '../../domain/usecases/seed_templates.dart';
+import '../../domain/usecases/abandon_workout_session.dart';
+import '../../domain/usecases/complete_workout_session.dart';
+import '../../domain/usecases/start_workout_session.dart';
 import '../../domain/usecases/update_workout.dart';
+import '../../presentation/blocs/active_workout/active_workout_bloc.dart';
 import '../../presentation/blocs/exercise/exercise_bloc.dart';
 import '../../presentation/blocs/workout/workout_bloc.dart';
 import '../services/exercise_seed_service.dart';
@@ -45,6 +54,10 @@ Future<void> initDependencies() async {
     () => WorkoutLocalDataSourceImpl(db),
   );
 
+  sl.registerLazySingleton<WorkoutSessionLocalDataSource>(
+    () => WorkoutSessionLocalDataSourceImpl(sl()),
+  );
+
   // Repositories
   sl.registerLazySingleton<ExerciseRepository>(
     () => ExerciseRepositoryImpl(localDataSource: sl()),
@@ -52,6 +65,10 @@ Future<void> initDependencies() async {
 
   sl.registerLazySingleton<WorkoutRepository>(
     () => WorkoutRepositoryImpl(sl()),
+  );
+
+  sl.registerLazySingleton<WorkoutSessionRepository>(
+    () => WorkoutSessionRepositoryImpl(sl()),
   );
 
   // Services
@@ -82,6 +99,12 @@ Future<void> initDependencies() async {
         seedService: sl(),
       ));
 
+  // Use cases - Workout Session
+  sl.registerLazySingleton(() => StartWorkoutSession(sl()));
+  sl.registerLazySingleton(() => GetActiveSession(sl()));
+  sl.registerLazySingleton(() => CompleteWorkoutSession(sl()));
+  sl.registerLazySingleton(() => AbandonWorkoutSession(sl()));
+
   // BLoCs
   sl.registerFactory(
     () => ExerciseBloc(
@@ -102,6 +125,15 @@ Future<void> initDependencies() async {
       getWorkoutTemplates: sl(),
       importTemplate: sl(),
       seedTemplates: sl(),
+    ),
+  );
+
+  sl.registerFactory(
+    () => ActiveWorkoutBloc(
+      startWorkoutSession: sl(),
+      getActiveSession: sl(),
+      completeWorkoutSession: sl(),
+      abandonWorkoutSession: sl(),
     ),
   );
 }

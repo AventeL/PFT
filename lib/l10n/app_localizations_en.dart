@@ -610,4 +610,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get successSettingsSaved => 'Settings saved';
+
+  @override
+  String get selectWorkout => 'Select a workout';
+
+  @override
+  String get quickStart => 'Quick Start';
+
+  @override
+  String get activeWorkout => 'Active Workout';
+
+  @override
+  String get elapsedTime => 'Elapsed Time';
+
+  @override
+  String sessionStartedAt(String time) {
+    return 'Started at $time';
+  }
 }
