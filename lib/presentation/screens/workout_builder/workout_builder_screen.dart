@@ -161,7 +161,12 @@ class _WorkoutBuilderScreenState extends State<WorkoutBuilderScreen> {
         child: Form(
           key: _formKey,
           child: ListView(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.only(
+              left: 16,
+              right: 16,
+              top: 16,
+              bottom: 100, // Extra padding for FAB
+            ),
             children: [
               // Workout Name
               TextFormField(
@@ -250,20 +255,34 @@ class _WorkoutBuilderScreenState extends State<WorkoutBuilderScreen> {
 
               const SizedBox(height: 24),
 
-              // Notes
+              // Notes Section with visible header
+              Row(
+                children: [
+                  const Icon(Icons.note, size: 20),
+                  const SizedBox(width: 8),
+                  Text(
+                    context.l10n.notes,
+                    style: AppTextStyles.h4,
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 8),
+
+              // Notes TextField
               TextFormField(
                 controller: _notesController,
                 decoration: InputDecoration(
-                  labelText: context.l10n.notes,
                   hintText: context.l10n.notesHint,
-                  prefixIcon: const Icon(Icons.note),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                maxLines: 3,
+                maxLines: 4,
                 textCapitalization: TextCapitalization.sentences,
               ),
+
+              const SizedBox(height: 16),
             ],
           ),
         ),

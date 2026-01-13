@@ -58,3 +58,18 @@ class DuplicateWorkoutEvent extends WorkoutEvent {
 class LoadTemplates extends WorkoutEvent {
   const LoadTemplates();
 }
+
+/// Event to import a template as a new workout
+class ImportTemplateEvent extends WorkoutEvent {
+  final String templateId;
+
+  const ImportTemplateEvent(this.templateId);
+
+  @override
+  List<Object?> get props => [templateId];
+}
+
+/// Event to seed templates if not already seeded
+class SeedTemplatesIfNeeded extends WorkoutEvent {
+  const SeedTemplatesIfNeeded();
+}

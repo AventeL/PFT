@@ -50,7 +50,7 @@ class WorkoutExerciseListItem extends StatelessWidget {
         return Card(
           margin: const EdgeInsets.only(bottom: 8),
           child: Padding(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.all(8),
             child: Row(
               children: [
                 // Drag handle
@@ -62,7 +62,7 @@ class WorkoutExerciseListItem extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(width: 12),
+                const SizedBox(width: 8),
 
                 // Exercise info
                 Expanded(
@@ -105,11 +105,11 @@ class WorkoutExerciseListItem extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(width: 12),
+                const SizedBox(width: 4),
 
                 // Target sets input
                 SizedBox(
-                  width: 80,
+                  width: 60,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -123,30 +123,34 @@ class WorkoutExerciseListItem extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          IconButton(
-                            icon: const Icon(Icons.remove_circle_outline),
-                            iconSize: 20,
-                            padding: EdgeInsets.zero,
-                            constraints: const BoxConstraints(),
-                            onPressed: workoutExercise.targetSets > 1
+                          InkWell(
+                            onTap: workoutExercise.targetSets > 1
                                 ? () => onTargetSetsChanged(
                                       workoutExercise.targetSets - 1,
                                     )
                                 : null,
+                            child: Icon(
+                              Icons.remove_circle_outline,
+                              size: 16,
+                              color: workoutExercise.targetSets > 1
+                                  ? AppColors.textSecondaryLight
+                                  : AppColors.textDisabledLight,
+                            ),
                           ),
-                          const SizedBox(width: 8),
+                          const SizedBox(width: 2),
                           Text(
                             '${workoutExercise.targetSets}',
                             style: AppTextStyles.setInput,
                           ),
-                          const SizedBox(width: 8),
-                          IconButton(
-                            icon: const Icon(Icons.add_circle_outline),
-                            iconSize: 20,
-                            padding: EdgeInsets.zero,
-                            constraints: const BoxConstraints(),
-                            onPressed: () => onTargetSetsChanged(
+                          const SizedBox(width: 2),
+                          InkWell(
+                            onTap: () => onTargetSetsChanged(
                               workoutExercise.targetSets + 1,
+                            ),
+                            child: const Icon(
+                              Icons.add_circle_outline,
+                              size: 16,
+                              color: AppColors.textSecondaryLight,
                             ),
                           ),
                         ],
@@ -155,11 +159,11 @@ class WorkoutExerciseListItem extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(width: 8),
+                const SizedBox(width: 4),
 
                 // Delete button
                 IconButton(
-                  icon: const Icon(Icons.delete_outline),
+                  icon: const Icon(Icons.delete_outline, size: 20),
                   color: AppColors.error,
                   onPressed: onRemove,
                 ),

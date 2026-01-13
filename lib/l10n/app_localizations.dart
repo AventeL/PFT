@@ -536,6 +536,48 @@ abstract class AppLocalizations {
   /// **'Modèles d\'entraînement'**
   String get workoutTemplates;
 
+  /// No description provided for @templates.
+  ///
+  /// In fr, this message translates to:
+  /// **'Templates'**
+  String get templates;
+
+  /// No description provided for @templateList.
+  ///
+  /// In fr, this message translates to:
+  /// **'Liste des templates'**
+  String get templateList;
+
+  /// No description provided for @useThisTemplate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Utiliser ce template'**
+  String get useThisTemplate;
+
+  /// No description provided for @noTemplatesAvailable.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun template disponible'**
+  String get noTemplatesAvailable;
+
+  /// No description provided for @errorLoadingTemplates.
+  ///
+  /// In fr, this message translates to:
+  /// **'Erreur lors du chargement des templates'**
+  String get errorLoadingTemplates;
+
+  /// No description provided for @retry.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réessayer'**
+  String get retry;
+
+  /// No description provided for @exercisesCount.
+  ///
+  /// In fr, this message translates to:
+  /// **'{count} exercices'**
+  String exercisesCount(int count);
+
   /// No description provided for @noWorkoutsFound.
   ///
   /// In fr, this message translates to:

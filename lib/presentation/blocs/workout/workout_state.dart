@@ -69,6 +69,21 @@ class TemplatesLoaded extends WorkoutState {
   List<Object?> get props => [templates];
 }
 
+/// State when a template is successfully imported
+class TemplateImported extends WorkoutState {
+  final Workout workout;
+
+  const TemplateImported(this.workout);
+
+  @override
+  List<Object?> get props => [workout];
+}
+
+/// State when templates are successfully seeded
+class TemplatesSeeded extends WorkoutState {
+  const TemplatesSeeded();
+}
+
 /// Error state
 class WorkoutError extends WorkoutState {
   final String message;

@@ -87,6 +87,20 @@
   "notes": "Notes",
   "notesHint": "Ajoutez des notes (optionnel)",
   "workoutTemplates": "Modèles d'entraînement",
+  "templates": "Templates",
+  "templateList": "Liste des templates",
+  "useThisTemplate": "Utiliser ce template",
+  "noTemplatesAvailable": "Aucun template disponible",
+  "errorLoadingTemplates": "Erreur lors du chargement des templates",
+  "retry": "Réessayer",
+  "exercisesCount": "{count} exercices",
+  "@exercisesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "noWorkoutsFound": "Aucun entraînement trouvé",
   "workoutNeedsExercises": "Ajoutez au moins un exercice",
   "addExercise": "Ajouter un exercice",

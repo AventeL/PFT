@@ -8,6 +8,7 @@ import 'l10n/app_localizations.dart';
 import 'presentation/blocs/exercise/exercise_bloc.dart';
 import 'presentation/blocs/exercise/exercise_event.dart';
 import 'presentation/blocs/workout/workout_bloc.dart';
+import 'presentation/blocs/workout/workout_event.dart';
 import 'presentation/screens/home/home_screen.dart';
 
 void main() async {
@@ -52,7 +53,8 @@ class MyApp extends StatelessWidget {
                 sl<ExerciseBloc>()..add(const SeedExercisesIfNeeded()),
           ),
           BlocProvider(
-            create: (context) => sl<WorkoutBloc>(),
+            create: (context) =>
+                sl<WorkoutBloc>()..add(const SeedTemplatesIfNeeded()),
           ),
         ],
         child: const HomeScreen(),

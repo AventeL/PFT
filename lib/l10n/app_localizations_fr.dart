@@ -228,6 +228,29 @@ class AppLocalizationsFr extends AppLocalizations {
   String get workoutTemplates => 'Modèles d\'entraînement';
 
   @override
+  String get templates => 'Templates';
+
+  @override
+  String get templateList => 'Liste des templates';
+
+  @override
+  String get useThisTemplate => 'Utiliser ce template';
+
+  @override
+  String get noTemplatesAvailable => 'Aucun template disponible';
+
+  @override
+  String get errorLoadingTemplates => 'Erreur lors du chargement des templates';
+
+  @override
+  String get retry => 'Réessayer';
+
+  @override
+  String exercisesCount(int count) {
+    return '$count exercices';
+  }
+
+  @override
   String get noWorkoutsFound => 'Aucun entraînement trouvé';
 
   @override

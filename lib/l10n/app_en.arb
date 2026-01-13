@@ -87,6 +87,20 @@
   "notes": "Notes",
   "notesHint": "Add notes (optional)",
   "workoutTemplates": "Workout templates",
+  "templates": "Templates",
+  "templateList": "Template list",
+  "useThisTemplate": "Use this template",
+  "noTemplatesAvailable": "No templates available",
+  "errorLoadingTemplates": "Error loading templates",
+  "retry": "Retry",
+  "exercisesCount": "{count} exercises",
+  "@exercisesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "noWorkoutsFound": "No workouts found",
   "workoutNeedsExercises": "Add at least one exercise",
   "addExercise": "Add exercise",

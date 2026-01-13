@@ -1,8 +1,12 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uuid/uuid.dart';
 import '../../../domain/usecases/create_workout.dart';
 import '../../../domain/usecases/delete_workout.dart';
+import '../../../domain/usecases/get_workout_templates.dart';
 import '../../../domain/usecases/get_workouts.dart';
+import '../../../domain/usecases/import_template.dart';
+import '../../../domain/usecases/seed_templates.dart';
 import '../../../domain/usecases/update_workout.dart';
 import 'workout_event.dart';
 import 'workout_state.dart';
@@ -13,6 +17,9 @@ class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
   final CreateWorkout createWorkout;
   final UpdateWorkout updateWorkout;
   final DeleteWorkout deleteWorkout;
+  final GetWorkoutTemplates getWorkoutTemplates;
+  final ImportTemplate importTemplate;
+  final SeedTemplates seedTemplates;
   final Uuid uuid = const Uuid();
 
   WorkoutBloc({
@@ -20,6 +27,9 @@ class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
     required this.createWorkout,
     required this.updateWorkout,
     required this.deleteWorkout,
+    required this.getWorkoutTemplates,
+    required this.importTemplate,
+    required this.seedTemplates,
   }) : super(const WorkoutInitial()) {
     on<LoadWorkouts>(_onLoadWorkouts);
     on<CreateWorkoutEvent>(_onCreateWorkout);
@@ -27,6 +37,8 @@ class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
     on<DeleteWorkoutEvent>(_onDeleteWorkout);
     on<DuplicateWorkoutEvent>(_onDuplicateWorkout);
     on<LoadTemplates>(_onLoadTemplates);
+    on<ImportTemplateEvent>(_onImportTemplate);
+    on<SeedTemplatesIfNeeded>(_onSeedTemplatesIfNeeded);
   }
 
   Future<void> _onLoadWorkouts(
@@ -36,7 +48,9 @@ class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
     try {
       emit(const WorkoutLoading());
       final workouts = await getWorkouts();
-      emit(WorkoutsLoaded(workouts));
+      // Filter out templates, only show user workouts
+      final userWorkouts = workouts.where((w) => !w.isTemplate).toList();
+      emit(WorkoutsLoaded(userWorkouts));
     } catch (e) {
       emit(WorkoutError('Failed to load workouts: ${e.toString()}'));
     }
@@ -115,11 +129,39 @@ class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
   ) async {
     try {
       emit(const WorkoutLoading());
-      final workouts = await getWorkouts();
-      final templates = workouts.where((w) => w.isTemplate).toList();
+      final templates = await getWorkoutTemplates();
       emit(TemplatesLoaded(templates));
     } catch (e) {
       emit(WorkoutError('Failed to load templates: ${e.toString()}'));
+    }
+  }
+
+  Future<void> _onImportTemplate(
+    ImportTemplateEvent event,
+    Emitter<WorkoutState> emit,
+  ) async {
+    try {
+      emit(const WorkoutLoading());
+      final workout = await importTemplate(event.templateId);
+      emit(TemplateImported(workout));
+      // Reload workouts after import
+      add(const LoadWorkouts());
+    } catch (e) {
+      emit(WorkoutError('Failed to import template: ${e.toString()}'));
+    }
+  }
+
+  Future<void> _onSeedTemplatesIfNeeded(
+    SeedTemplatesIfNeeded event,
+    Emitter<WorkoutState> emit,
+  ) async {
+    try {
+      await seedTemplates();
+      emit(const TemplatesSeeded());
+    } catch (e) {
+      // Don't emit error for seeding failure, just log it
+      // The app can still work without templates
+      debugPrint('Warning: Failed to seed templates: ${e.toString()}');
     }
   }
 }

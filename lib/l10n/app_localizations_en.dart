@@ -228,6 +228,29 @@ class AppLocalizationsEn extends AppLocalizations {
   String get workoutTemplates => 'Workout templates';
 
   @override
+  String get templates => 'Templates';
+
+  @override
+  String get templateList => 'Template list';
+
+  @override
+  String get useThisTemplate => 'Use this template';
+
+  @override
+  String get noTemplatesAvailable => 'No templates available';
+
+  @override
+  String get errorLoadingTemplates => 'Error loading templates';
+
+  @override
+  String get retry => 'Retry';
+
+  @override
+  String exercisesCount(int count) {
+    return '$count exercises';
+  }
+
+  @override
   String get noWorkoutsFound => 'No workouts found';
 
   @override

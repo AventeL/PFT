@@ -14,13 +14,17 @@ import '../../domain/usecases/create_workout.dart';
 import '../../domain/usecases/delete_workout.dart';
 import '../../domain/usecases/get_exercise_by_id.dart';
 import '../../domain/usecases/get_exercises.dart';
+import '../../domain/usecases/get_workout_templates.dart';
 import '../../domain/usecases/get_workouts.dart';
+import '../../domain/usecases/import_template.dart';
 import '../../domain/usecases/search_exercises.dart';
 import '../../domain/usecases/seed_exercises.dart';
+import '../../domain/usecases/seed_templates.dart';
 import '../../domain/usecases/update_workout.dart';
 import '../../presentation/blocs/exercise/exercise_bloc.dart';
 import '../../presentation/blocs/workout/workout_bloc.dart';
 import '../services/exercise_seed_service.dart';
+import '../services/workout_template_seed_service.dart';
 
 final GetIt sl = GetIt.instance;
 
@@ -55,6 +59,10 @@ Future<void> initDependencies() async {
     () => ExerciseSeedService(repository: sl()),
   );
 
+  sl.registerLazySingleton<WorkoutTemplateSeedService>(
+    () => WorkoutTemplateSeedService(),
+  );
+
   // Use cases - Exercise
   sl.registerLazySingleton(() => GetExercises(repository: sl()));
   sl.registerLazySingleton(() => GetExerciseById(repository: sl()));
@@ -67,6 +75,12 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton(() => CreateWorkout(repository: sl()));
   sl.registerLazySingleton(() => UpdateWorkout(repository: sl()));
   sl.registerLazySingleton(() => DeleteWorkout(repository: sl()));
+  sl.registerLazySingleton(() => GetWorkoutTemplates(repository: sl()));
+  sl.registerLazySingleton(() => ImportTemplate(repository: sl()));
+  sl.registerLazySingleton(() => SeedTemplates(
+        repository: sl(),
+        seedService: sl(),
+      ));
 
   // BLoCs
   sl.registerFactory(
@@ -85,6 +99,9 @@ Future<void> initDependencies() async {
       createWorkout: sl(),
       updateWorkout: sl(),
       deleteWorkout: sl(),
+      getWorkoutTemplates: sl(),
+      importTemplate: sl(),
+      seedTemplates: sl(),
     ),
   );
 }
